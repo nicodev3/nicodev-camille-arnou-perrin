@@ -2,7 +2,7 @@
     "schemaVersion": 25,
     "profession": "psychologue",
     "business": {
-        "fullName": "Pierre Janet",
+        "fullName": "Camille Arnou-Perrin",
         "title": "Psychologue",
         "city": "Lyon",
         "addressLine1": "12 rue de la Paix",
@@ -85,7 +85,7 @@
         }
     },
     "seo": {
-        "siteName": "Cabinet de psychologie de Pierre Jeanet",
+        "siteName": "Cabinet de psychologie de Camille Arnou-Perrin",
         "description": "Psychologue pour adultes, adolescents et enfants. Accompagnement de l anxiete, du stress, de l epuisement et des transitions de vie, avec des outils concrets et un cadre bienveillant.",
         "baseUrl": "https://exemple.fr",
         "ogImage": "https://exemple.fr/og.jpg"

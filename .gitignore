@@ -33,3 +33,6 @@ pnpm-debug.log*
 
 # Claude Code (peut contenir des clés / permissions locales)
 .claude/
+
+# Assets Stitch temporaires / SDK local
+tmp/

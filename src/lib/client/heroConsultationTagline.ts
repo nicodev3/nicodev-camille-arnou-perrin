@@ -22,6 +22,9 @@ export function heroConsultationTaglineAfterPour(practice: ClientConfig["practic
     if (id === "autre") {
       const detail = practice.audienceOther.trim();
       if (detail) segments.push(detail);
+    } else if (id === "adultes") {
+      const qualifier = audienceSet.has("autre") ? "" : practice.audienceOther.trim();
+      segments.push(qualifier ? `adultes ${qualifier}` : AUDIENCE_LABEL_SHORT[id]);
     } else {
       segments.push(AUDIENCE_LABEL_SHORT[id]);
     }

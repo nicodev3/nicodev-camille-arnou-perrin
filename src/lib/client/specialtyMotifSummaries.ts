@@ -42,6 +42,24 @@ const SPECIALTY_SUMMARIES_RAW: Record<string, string> = {
     "Faire le point sur l’épuisement, les déséquilibres de charge et le sens du travail sans culpabiliser la mise en pause. Vous structurez des limites, des décisions réalistes ou un projet de transition avec des pas concrets.",
   "Questionnement identitaire, estime de soi et orientation":
     "Explorer en sécurité le genre, la sexualité, l’image de soi ou les choix d’orientation sans précipitation ni autocensure. Le travail renforce des critères progressifs, la confiance en l’action et des repères qui vous ressemblent.",
+  "Accompagnement des troubles anxieux et phobiques":
+    "Identifier les déclencheurs, apaiser l’hypervigilance et réduire les évitements (dont séparations, phobies, panique ou situations scolaires). Des outils concrets vous aident à retrouver de la souplesse dans les situations du quotidien.",
+  "Accompagnement de l'ESPT et de l'adaptation au stress après événement traumatique":
+    "Stabiliser les réactivations, les souvenirs intrusifs et l’hypervigilance dans un cadre sécurisant. Nous intégrons la régulation avant d’aborder le récit lorsque vous y êtes prêt.",
+  "Accompagnement du deuil, des violences, du harcèlement et des troubles relationnels sévères":
+    "Donner sens à ce qui a brisé les repères (deuil, violences, harcèlement, ruptures ou troubles de l’attachement) sans rester seul avec la honte ou la colère. Le travail vise la sécurisation du présent et des appuis réalistes, y compris avec les institutions concernées.",
+  "Accompagnement des troubles de l'humeur":
+    "Mieux comprendre les variations d’humeur (dépression, dysthymie, trouble bipolaire) et retrouver une stabilité du quotidien. L’accompagnement complète le suivi médical quand il est en place ; en urgence absolue, contactez le 15 ou le 112.",
+  "Accompagnement des troubles de la personnalité":
+    "Clarifier les schémas relationnels, l’image de soi et les réactions qui se répètent, dans un cadre stable et non jugeant. Le travail vise plus de souplesse dans les liens et une meilleure régulation émotionnelle, à votre rythme.",
+  "Accompagnement de l'automutilation non suicidaire":
+    "Comprendre la souffrance que les gestes expriment et développer des substituts moins dangereux tout en stabilisant les contextes à risque. La priorité est la sécurisation ; le sens du geste se construit ensuite, sans jugement.",
+  "Accompagnement des addictions (substances, jeux, écrans…)":
+    "Repérer les déclencheurs, les croyances et les environnements qui maintiennent l’usage malgré les conséquences. Vous explorez d’autres façons de réguler la tension, l’ennui ou la recherche de récompense.",
+  "Accompagnement des difficultés relationnelles, familiales et de l'isolement social":
+    "Clarifier attentes, limites et besoins dans la sphère familiale ou amicale et réduire l’isolement par des micro-liens réalistes. On vise des propos et des gestes soutenables plutôt qu’une « vie sociale idéale » immédiate.",
+  "Accompagnement du questionnement identitaire, de l'estime de soi et de l'orientation":
+    "Explorer en sécurité le genre, la sexualité, l’image de soi ou les choix d’orientation sans précipitation ni autocensure. Le travail renforce des critères progressifs, la confiance en l’action et des repères qui vous ressemblent.",
 };
 
 for (const label of SPECIALTY_MOTIF_ORDERED_LABELS) {
@@ -53,9 +71,7 @@ for (const label of SPECIALTY_MOTIF_ORDERED_LABELS) {
   }
 }
 
-const builtSummaries: Record<string, string> = Object.fromEntries(
-  SPECIALTY_MOTIF_ORDERED_LABELS.map((label) => [label, SPECIALTY_SUMMARIES_RAW[label]!]),
-);
+const builtSummaries: Record<string, string> = { ...SPECIALTY_SUMMARIES_RAW };
 
 export const SPECIALTY_MOTIF_SUMMARIES: Readonly<Record<string, string>> = builtSummaries;
 

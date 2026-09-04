@@ -35,28 +35,19 @@
   },
   "practice": {
     "audience": [
-      "adolescents",
       "adultes"
     ],
-    "audienceOther": "",
+    "audienceOther": "à partir de 16 ans",
     "specialties": [
-      "Troubles anxieux et phobiques",
-      "ESPT et adaptation au stress après événement traumatique",
-      "Deuil, violences, harcèlement et troubles relationnels sévères",
-      "Troubles dépressifs et dysthymie",
-      "Trouble bipolaire",
-      "Automutilation non suicidaire",
-      "Addictions (substances, jeux, écrans…)",
-      "Difficultés relationnelles, familiales et isolement social",
-      "Questionnement identitaire, estime de soi et orientation",
-      "anxiété",
-      "stress",
-      "dépression",
-      "troubles émotionnels",
-      "estime de soi",
-      "relations interpersonnelles",
-      "problématiques liées aux addictions",
-      "traumatismes."
+      "Accompagnement des troubles anxieux et phobiques",
+      "Accompagnement de l'ESPT et de l'adaptation au stress après événement traumatique",
+      "Accompagnement du deuil, des violences, du harcèlement et des troubles relationnels sévères",
+      "Accompagnement des troubles de l'humeur",
+      "Accompagnement des troubles de la personnalité",
+      "Accompagnement de l'automutilation non suicidaire",
+      "Accompagnement des addictions (substances, jeux, écrans…)",
+      "Accompagnement des difficultés relationnelles, familiales et de l'isolement social",
+      "Accompagnement du questionnement identitaire, de l'estime de soi et de l'orientation"
     ],
     "approaches": [
       "Psychothérapie psychodynamique",
@@ -161,7 +152,7 @@
   },
   "seo": {
     "siteName": "Cabinet de psychologie de Pierre Jeanet",
-    "description": "Psychologue pour adultes, adolescents et enfants. Accompagnement de l anxiete, du stress, de l epuisement et des transitions de vie, avec des outils concrets et un cadre bienveillant.",
+    "description": "Psychologue pour adultes à partir de 16 ans, au Chesnay. Accompagnement de l'anxiété, du stress, des addictions, des traumatismes et des troubles de l'humeur, au cabinet et en visio.",
     "baseUrl": "https://exemple.fr",
     "ogImage": "https://exemple.fr/og.jpg"
   },
@@ -209,8 +200,8 @@
     "sexology": []
   },
   "aboutPage": {
-    "intro": "Psychologue clinicienne et psychothérapeute, je vous accueille avec bienveillance et écoute au sein d’un cabinet pluridisciplinaire situé au Chesnay-Rocquencourt. Mon approche est psychodynamique et centrée sur vos besoins et votre singularité, afin de vous accompagner dans les difficultés que vous traversez : anxiété, stress, dépression, troubles émotionnels, estime de soi, relations interpersonnelles, ou encore problématiques liées aux addictions et aux traumatismes.\n\nJ’accompagne les adultes et les adolescents (à partir de 16 ans) dans le cadre de prises en charge individuelles. Mon expérience en institution m’a permis de travailler auprès de personnes confrontées à différentes problématiques. Cette diversité de parcours me permet d’adapter mon accompagnement à chaque situation pour proposer un suivi personnalisé.\n\nRencontrer un/une psychologue permet d’accéder à un espace de parole, c’est un moment pour soi où l’on peut parler sans être jugé, être accompagné dans la confiance et la bienveillance. Parler permet souvent de se libérer, de gérer ses émotions, de mieux se comprendre et de pouvoir avancer.\n\nQue ce soit pour un soutien ponctuel ou un accompagnement au long cours, mon objectif est de vous aider à mieux comprendre vos émotions, vos pensées et vos comportements, afin de retrouver un mieux-être et un équilibre psychologique.\n\nLes consultations se déroulent en présentiel au cabinet ou en téléconsultation, selon vos préférences.\n\nN’hésitez pas à prendre rendez-vous en ligne ou à me contacter pour toute question. Je suis à votre disposition pour vous accompagner sur votre chemin de mieux-être.",
-    "sidebarSummary": "Psychologue Clinicienne"
+    "intro": "Psychologue clinicienne et psychothérapeute, je vous accueille avec bienveillance et écoute au sein d’un cabinet pluridisciplinaire situé au Chesnay-Rocquencourt. Mon approche est psychodynamique et centrée sur vos besoins et votre singularité, afin de vous accompagner dans les difficultés que vous traversez : anxiété, stress, dépression, troubles émotionnels, estime de soi, relations interpersonnelles, ou encore problématiques liées aux addictions et aux traumatismes.\n\nJ’accompagne les adultes à partir de 16 ans dans le cadre de prises en charge individuelles. Mon expérience en institution m’a permis de travailler auprès de personnes confrontées à différentes problématiques. Cette diversité de parcours me permet d’adapter mon accompagnement à chaque situation pour proposer un suivi personnalisé.\n\nRencontrer un/une psychologue permet d’accéder à un espace de parole, c’est un moment pour soi où l’on peut parler sans être jugé, être accompagné dans la confiance et la bienveillance. Parler permet souvent de se libérer, de gérer ses émotions, de mieux se comprendre et de pouvoir avancer.\n\nQue ce soit pour un soutien ponctuel ou un accompagnement au long cours, mon objectif est de vous aider à mieux comprendre vos émotions, vos pensées et vos comportements, afin de retrouver un mieux-être et un équilibre psychologique.\n\nLes consultations se déroulent en présentiel au cabinet ou en téléconsultation, selon vos préférences.\n\nN’hésitez pas à prendre rendez-vous en ligne ou à me contacter pour toute question. Je suis à votre disposition pour vous accompagner sur votre chemin de mieux-être.",
+    "sidebarSummary": "Psychologue clinicienne · adultes à partir de 16 ans"
   },
   "contact": {
     "hours": {

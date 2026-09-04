@@ -3,7 +3,7 @@ import { defineConfig, envField } from "astro/config";
 import sitemap from "@astrojs/sitemap";
 import tailwindcss from "@tailwindcss/vite";
 import client from "./src/data/client.json" with { type: "json" };
-import { siteFonts } from "./src/design/fonts.mjs";
+import { siteFonts } from "./src/design/fonts.mjs"; // Stitch : Plus Jakarta Sans + Newsreader
 
 /** Pages techniques, jamais indexées (sitemap + robots.txt). */
 export const NON_INDEXABLE_PATHS = ["/admin/", "/client-config/"];

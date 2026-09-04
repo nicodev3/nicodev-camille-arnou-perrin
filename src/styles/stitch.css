@@ -1,6 +1,7 @@
 /**
  * Design client — Minimalist Monochrome Portfolio (Google Stitch).
- * Écran Accueil : tokens + header/footer + hero + services + FAQ.
+ * Écrans : Accueil, Pourquoi consulter, Tarifs, Contact, À propos,
+ * Mentions légales, Articles (+ pages intérieures partagées).
  */
 
 :root {
@@ -286,6 +287,520 @@ h1 {
 
 [data-component="section.services"] li:hover {
   background: var(--color-accent);
+}
+
+/* === Pages intérieures (layout partagé) === */
+[data-component="ui.breadcrumb"] {
+  font-family: var(--font-sans);
+  font-size: var(--text-xs);
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--color-muted);
+}
+
+[data-component="ui.breadcrumb"] a {
+  color: var(--stitch-on-variant);
+  text-decoration: none;
+  transition: color 0.15s ease;
+}
+
+[data-component="ui.breadcrumb"] a:hover {
+  color: var(--color-primary);
+}
+
+[data-component="ui.breadcrumb"] [aria-current="page"] {
+  color: var(--color-primary);
+}
+
+[data-component="page"] .page-header h1 {
+  font-family: var(--font-serif);
+  font-weight: 400;
+  letter-spacing: -0.02em;
+  color: var(--color-primary);
+}
+
+[data-component="page"] .page-header .lead {
+  max-width: 36rem;
+  color: var(--stitch-on-variant);
+  font-weight: 400;
+  line-height: 1.6;
+}
+
+/* === Pourquoi consulter — motifs === */
+[data-component="motifs.list"] ul {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+@media (min-width: 640px) {
+  [data-component="motifs.list"] ul {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+[data-component="motifs.item"] {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  padding: 1.5rem;
+  background: var(--stitch-surface-low);
+  border-radius: var(--radius-xl);
+  transition: background-color 0.2s ease;
+}
+
+[data-component="motifs.item"]:hover {
+  background: var(--color-accent);
+}
+
+[data-component="motifs.item"] > p:first-child {
+  margin: 0;
+  font-family: var(--font-serif);
+  font-size: var(--text-lg);
+  font-weight: 500;
+  color: var(--color-primary);
+  line-height: 1.35;
+  letter-spacing: -0.01em;
+}
+
+[data-component="motifs.item"] > p:last-child {
+  margin: 0;
+  font-family: var(--font-sans);
+  font-size: var(--text-sm);
+  color: var(--stitch-on-variant);
+  line-height: 1.6;
+}
+
+/* === Pages intérieures — titres de section === */
+[data-component="page"] .page-block > h2,
+[data-component="panel.conditions"] > h2,
+[data-component="panel.credentials"] > h2,
+[data-component="contact.form"] > h2,
+[data-component="contact.hours-block"] > h2 {
+  font-family: var(--font-serif);
+  font-weight: 400;
+  letter-spacing: -0.02em;
+  color: var(--color-primary);
+  margin-bottom: 1rem;
+}
+
+/* === Tarifs === */
+[data-component="pricing.item"] {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  padding: 1.5rem;
+  background: var(--stitch-surface-low);
+  border-radius: var(--radius-xl);
+  transition: background-color 0.2s ease;
+}
+
+[data-component="pricing.item"]:hover {
+  background: var(--color-accent);
+}
+
+[data-component="pricing.list"] ul.divide-y {
+  border-top: 1px solid var(--stitch-surface-high);
+  border-bottom: 1px solid var(--stitch-surface-high);
+}
+
+[data-component="pricing.list"] ul.divide-y > [data-component="pricing.item"] {
+  border-radius: 0;
+  background: transparent;
+  padding-inline: 0;
+}
+
+[data-component="pricing.list"] ul.divide-y > [data-component="pricing.item"]:hover {
+  background: transparent;
+}
+
+[data-component="pricing.item"] > p:first-child {
+  margin: 0;
+  font-family: var(--font-serif);
+  font-size: var(--text-lg);
+  font-weight: 500;
+  color: var(--color-primary);
+  line-height: 1.35;
+}
+
+[data-component="pricing.item"] > p:nth-child(2) {
+  margin: 0;
+  font-family: var(--font-serif);
+  font-size: var(--text-2xl);
+  font-weight: 400;
+  letter-spacing: -0.02em;
+  color: var(--color-primary);
+}
+
+[data-component="pricing.item"] .note {
+  color: var(--stitch-on-variant);
+}
+
+[data-component="pricing.list"] > p {
+  color: var(--stitch-on-variant);
+  line-height: 1.6;
+}
+
+[data-component="pricing.payment"] ul,
+[data-component="conditions.limits"] ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+[data-component="pricing.payment"] li {
+  padding: 0.75rem 1rem;
+  background: var(--stitch-surface-low);
+  border-radius: 0.25rem;
+  font-family: var(--font-sans);
+  font-size: var(--text-sm);
+  color: var(--stitch-on-variant);
+}
+
+[data-component="pricing.reimbursement"] > p {
+  color: var(--stitch-on-variant);
+  line-height: 1.6;
+  max-width: 40rem;
+}
+
+[data-component="panel.conditions"] [data-component="conditions.cancellation"],
+[data-component="panel.conditions"] [data-component="conditions.delay"],
+[data-component="panel.conditions"] [data-component="conditions.no-show"] {
+  padding: 1.5rem;
+  background: var(--stitch-surface-low);
+  border-radius: var(--radius-xl);
+}
+
+[data-component="panel.conditions"] [data-component="conditions.cancellation"] > p:first-child,
+[data-component="panel.conditions"] [data-component="conditions.delay"] > p:first-child,
+[data-component="panel.conditions"] [data-component="conditions.no-show"] > p:first-child {
+  margin: 0 0 0.5rem;
+  font-family: var(--font-serif);
+  font-size: var(--text-lg);
+  font-weight: 500;
+  color: var(--color-primary);
+}
+
+[data-component="panel.conditions"] .note {
+  color: var(--stitch-on-variant);
+}
+
+[data-component="conditions.limits"] {
+  margin-top: 1rem;
+  padding: 1.5rem;
+  background: var(--color-accent);
+  border-radius: var(--radius-xl);
+}
+
+[data-component="pricing.contact-cta"] {
+  padding: 1.5rem;
+  background: var(--stitch-surface-low);
+  border-radius: var(--radius-xl);
+  border: 1px solid var(--stitch-surface-high);
+}
+
+[data-component="pricing.contact-cta"] > p:first-child {
+  margin: 0 0 1rem;
+  font-family: var(--font-serif);
+  font-size: var(--text-lg);
+  color: var(--color-primary);
+  line-height: 1.35;
+}
+
+/* === Contact === */
+[data-component="contact.card"] {
+  padding: 1.5rem;
+  background: var(--stitch-surface-low);
+  border-radius: var(--radius-xl);
+}
+
+[data-component="contact.card"] > div > div:first-child > p:first-child {
+  font-family: var(--font-serif);
+  font-size: var(--text-lg);
+  font-weight: 500;
+  color: var(--color-primary);
+  margin-bottom: 0.5rem;
+}
+
+[data-component="contact.card"] p {
+  color: var(--stitch-on-variant);
+  line-height: 1.6;
+}
+
+[data-component="contact.card"] a:not(.cta-primary):not(.cta-secondary) {
+  color: var(--color-primary);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  text-decoration-color: var(--stitch-outline);
+}
+
+[data-component="contact.card"] a:not(.cta-primary):not(.cta-secondary):hover {
+  text-decoration-color: var(--color-primary);
+}
+
+[data-component="contact.map"] {
+  border-radius: var(--radius-xl);
+  overflow: hidden;
+  background: var(--stitch-surface-high);
+  border: 1px solid var(--stitch-surface-high);
+}
+
+[data-component="contact.hours"],
+[data-component="contact.waiting"] {
+  padding: 1.5rem;
+  background: var(--stitch-surface-low);
+  border-radius: var(--radius-xl);
+}
+
+[data-component="contact.hours"] > p,
+[data-component="contact.waiting"] p {
+  color: var(--stitch-on-variant);
+  line-height: 1.6;
+}
+
+[data-component="contact.hours-block"] table {
+  width: 100%;
+  border-collapse: collapse;
+  font-family: var(--font-sans);
+  font-size: var(--text-sm);
+}
+
+[data-component="contact.hours-block"] th {
+  text-align: left;
+  font-weight: 600;
+  color: var(--color-primary);
+  padding: 0.5rem 0.75rem 0.5rem 0;
+  border-bottom: 1px solid var(--stitch-surface-high);
+}
+
+[data-component="contact.hours-block"] td {
+  text-align: right;
+  color: var(--stitch-on-variant);
+  padding: 0.5rem 0;
+  border-bottom: 1px solid var(--stitch-surface-high);
+}
+
+[data-component="contact.form"] > .note {
+  margin-bottom: 1.5rem;
+  color: var(--stitch-on-variant);
+}
+
+[data-component="contact.form"] [role="status"] {
+  padding: 1rem 1.25rem;
+  margin-bottom: 1.5rem;
+  background: var(--color-accent);
+  border-radius: var(--radius-xl);
+  color: var(--color-primary);
+  font-size: var(--text-sm);
+}
+
+[data-component="contact.form"] label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-family: var(--font-sans);
+  font-size: var(--text-xs);
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--stitch-on-variant);
+}
+
+.form-field {
+  font-family: var(--font-sans);
+  color: var(--color-primary);
+  background: #ffffff;
+  border: 1px solid var(--stitch-outline);
+  border-radius: 0.125rem;
+  transition:
+    border-color 0.15s ease,
+    box-shadow 0.15s ease;
+}
+
+.form-field:focus {
+  outline: none;
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--color-primary) 12%, transparent);
+}
+
+.form-field::placeholder {
+  color: var(--color-muted);
+}
+
+/* === À propos === */
+[data-component="about.intro"] h1 {
+  font-family: var(--font-serif);
+  font-weight: 400;
+  letter-spacing: -0.02em;
+  color: var(--color-primary);
+}
+
+[data-component="about.intro"] .note {
+  color: var(--color-muted);
+}
+
+[data-component="about.intro"] .lead {
+  color: var(--stitch-on-variant);
+  font-weight: 400;
+  line-height: 1.6;
+  max-width: 36rem;
+}
+
+[data-component="ui.practitioner-portrait"] > div {
+  border-radius: var(--radius-xl);
+  background: var(--stitch-surface-high);
+}
+
+[data-component="ui.practitioner-portrait"] > div > div {
+  color: var(--color-muted);
+  background: var(--stitch-surface-low);
+}
+
+[data-component="panel.credentials"] > .note {
+  margin-bottom: 1.5rem;
+  color: var(--stitch-on-variant);
+}
+
+[data-component="credentials.degrees"],
+[data-component="credentials.trainings"] {
+  padding: 1.5rem;
+  background: var(--stitch-surface-low);
+  border-radius: var(--radius-xl);
+}
+
+[data-component="credentials.degrees"] > .note,
+[data-component="credentials.trainings"] > .note {
+  margin-bottom: 0.75rem;
+  color: var(--color-muted);
+}
+
+[data-component="credentials.degrees"] ul,
+[data-component="credentials.trainings"] ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+[data-component="credentials.degrees"] li,
+[data-component="credentials.trainings"] li {
+  font-family: var(--font-sans);
+  font-size: var(--text-sm);
+  color: var(--stitch-on-variant);
+  line-height: 1.5;
+}
+
+[data-component="credentials.degrees"] li > span:first-child,
+[data-component="credentials.trainings"] li > span:first-child {
+  font-family: var(--font-serif);
+  font-size: var(--text-base);
+  font-weight: 500;
+  color: var(--color-primary);
+}
+
+[data-component="credentials.affiliations"] {
+  margin-top: 1rem;
+  padding: 1rem 1.25rem;
+  background: var(--color-accent);
+  border-radius: var(--radius-xl);
+  font-size: var(--text-sm);
+  color: var(--stitch-on-variant);
+}
+
+/* === Mentions légales === */
+[data-component="legal.editor"],
+[data-component="legal.hosting"],
+[data-component="legal.privacy"],
+[data-component="legal.cookies"] {
+  padding: 1.5rem;
+  background: var(--stitch-surface-low);
+  border-radius: var(--radius-xl);
+}
+
+[data-component="legal.editor"] p,
+[data-component="legal.hosting"] p,
+[data-component="legal.privacy"] p,
+[data-component="legal.cookies"] p {
+  color: var(--stitch-on-variant);
+  line-height: 1.6;
+}
+
+[data-component="legal.privacy"] a {
+  color: var(--color-primary);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  text-decoration-color: var(--stitch-outline);
+}
+
+[data-component="legal.privacy"] a:hover {
+  text-decoration-color: var(--color-primary);
+}
+
+/* === Articles & pages pratique === */
+[data-component="content.article-list"] ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+[data-component="content.article-list"] li a {
+  display: block;
+  padding: 1.5rem;
+  background: var(--stitch-surface-low);
+  border-radius: var(--radius-xl);
+  text-decoration: none;
+  transition: background-color 0.2s ease;
+}
+
+[data-component="content.article-list"] li a:hover {
+  background: var(--color-accent);
+}
+
+[data-component="content.article-list"] li a > p:first-child {
+  margin: 0;
+  font-family: var(--font-serif);
+  font-size: var(--text-lg);
+  font-weight: 500;
+  color: var(--color-primary);
+  line-height: 1.35;
+}
+
+[data-component="content.article-list"] li a .note {
+  margin: 0.5rem 0 0;
+  color: var(--stitch-on-variant);
+}
+
+[data-component="content.article"],
+[data-component="content.practice-page"] {
+  color: var(--stitch-on-variant);
+  line-height: 1.7;
+  max-width: 40rem;
+}
+
+[data-component="content.article"] a,
+[data-component="content.practice-page"] a,
+.content-rich a {
+  color: var(--color-primary);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  text-decoration-color: var(--stitch-outline);
+}
+
+[data-component="content.article"] a:hover,
+[data-component="content.practice-page"] a:hover,
+.content-rich a:hover {
+  text-decoration-color: var(--color-primary);
 }
 
 /* === Mon Soutien Psy === */

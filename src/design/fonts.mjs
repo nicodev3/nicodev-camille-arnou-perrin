@@ -1,6 +1,6 @@
 // @ts-check
 /**
- * Polices du design client (Google Stitch — Accueil style MenteNova).
+ * Polices du design client (Google Stitch — Accueil teinte vert olive MenteNova).
  * Plus Jakarta Sans = corps / nav / labels ; Newsreader = titres display (italique inclus).
  *
  * @type {import("astro").AstroUserConfig["fonts"]}

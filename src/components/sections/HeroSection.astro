@@ -1,4 +1,6 @@
 ---
+import { Image } from "astro:assets";
+import camillePerrin from "../../assets/photos/camille-perrin.jpeg";
 import { CalendarDays, MessagesSquare } from "@lucide/astro";
 import { client } from "../../lib/client";
 import { getSiteCopy } from "../../lib/siteCopy";
@@ -24,33 +26,44 @@ const bookingHref = resolvedBookingPrimaryHref(client);
 const bookingExternal = bookingPrimaryIsExternal(bookingHref);
 ---
 
-<div data-component="HeroSection">
-  <div class="space-y-3">
-    {heroEyebrow && <p class="text-sm md:text-base">{heroEyebrow}</p>}
-    <h1>
-      {client.business.title} {client.business.city}
-    </h1>
-    <p class="max-w-3xl text-lg">{heroConsultTagline}</p>
-  </div>
-  <div class="space-y-8 py-5">
-    <div class="max-w-3xl space-y-5">
-      {introText && <p>{introText}</p>}
-      {introTextSecondary && <p>{introTextSecondary}</p>}
+<div data-component="HeroSection" class="flex flex-col gap-8 md:flex-row md:items-center">
+  <div class="flex-1">
+    <div class="space-y-3">
+      {heroEyebrow && <p class="text-sm md:text-base">{heroEyebrow}</p>}
+      <h1>
+        {client.business.title}
+        {client.business.city}
+      </h1>
+      <p class="max-w-3xl text-lg">{heroConsultTagline}</p>
     </div>
+    <div class="space-y-8 py-5">
+      <div class="max-w-3xl space-y-5">
+        {introText && <p>{introText}</p>}
+        {introTextSecondary && <p>{introTextSecondary}</p>}
+      </div>
 
-    <div class="flex flex-wrap items-center gap-3">
-      <a
-        href={bookingHref}
-        class="cta-primary cta-primary--sm"
-        {...bookingExternal ? { target: "_blank", rel: "noopener noreferrer" } : {}}
-      >
-        <CalendarDays class="size-4 shrink-0" size={16} aria-hidden="true" />
-        {SITE_BOOKING_PRIMARY_LABEL}
-      </a>
-      <a href={SITE_BOOKING_SECONDARY_HREF} class="cta-secondary cta-secondary--sm">
-        <MessagesSquare class="size-4 shrink-0" size={16} aria-hidden="true" />
-        {SITE_BOOKING_SECONDARY_LABEL}
-      </a>
+      <div class="flex flex-wrap items-center gap-3">
+        <a
+          href={bookingHref}
+          class="cta-primary cta-primary--sm"
+          {...bookingExternal ? { target: "_blank", rel: "noopener noreferrer" } : {}}
+        >
+          <CalendarDays class="size-4 shrink-0" size={16} aria-hidden="true" />
+          {SITE_BOOKING_PRIMARY_LABEL}
+        </a>
+        <a href={SITE_BOOKING_SECONDARY_HREF} class="cta-secondary cta-secondary--sm">
+          <MessagesSquare class="size-4 shrink-0" size={16} aria-hidden="true" />
+          {SITE_BOOKING_SECONDARY_LABEL}
+        </a>
+      </div>
     </div>
+  </div>
+  <div class="shrink-0 md:w-80 lg:w-96">
+    <Image
+      src={camillePerrin}
+      alt="Camille Arnou-Perrin"
+      class="h-auto w-full rounded-2xl object-cover shadow-md"
+      loading="eager"
+    />
   </div>
 </div>

@@ -3,9 +3,9 @@ import { Image } from "astro:assets";
 import type { ImageMetadata } from "astro";
 import { client } from "../lib/client";
 
-/* Photo pro : `src/assets/photos/portrait.webp` (nom fixe). Absent → placeholder. */
+/* Photo pro : `src/assets/photos/camille-perrin-2.jpeg`. Absent → placeholder. */
 const portraitGlob = import.meta.glob<{ default: ImageMetadata }>(
-  "../assets/photos/portrait.webp",
+  "../assets/photos/camille-perrin-2.jpeg",
   {
     eager: true,
   },

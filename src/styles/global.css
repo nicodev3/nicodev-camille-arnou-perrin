@@ -76,7 +76,7 @@
 @layer components {
   /* Variantes de texte */
   .lead {
-    @apply text-lg leading-relaxed;
+    @apply text-base leading-relaxed;
   }
 
   .note {

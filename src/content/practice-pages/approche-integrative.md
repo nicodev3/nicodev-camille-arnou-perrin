@@ -2,16 +2,16 @@
 title: "Approche intégrative"
 description: "Une posture clinique qui ajuste les outils à votre situation plutôt que de faire entrer votre histoire dans le cadre d'une seule méthode."
 draft: false
-updatedAt: "2026-09-06"
+updatedAt: "2026-09-08"
 ---
 
 ## Qu'est-ce que l'approche intégrative ?
 
 Aucune méthode thérapeutique ne convient à toutes les personnes, ni à tous les moments d'une même vie. L'approche intégrative part de ce constat simple : plutôt que de faire entrer votre histoire dans le cadre d'une seule technique, elle ajuste la façon de travailler à ce que vous vivez réellement.
 
-On peut la comprendre de deux manières. La première consiste à assembler plusieurs modèles théoriques en un tout cohérent — c'est un travail de conceptualisation. La seconde, plus proche du quotidien d'un cabinet, en fait une **démarche clinique soumise aux aléas de la rencontre** : ce qui se joue entre vous et moi, ce que vous apportez, ce que je perçois et ce que je choisis d'en faire. C'est cette seconde acception qui guide ma pratique.
+On peut la comprendre de deux manières. La première consiste à assembler plusieurs modèles théoriques en un tout cohérent, dans un travail de conceptualisation. La seconde, plus proche du quotidien d'un cabinet, en fait une **démarche clinique soumise aux aléas de la rencontre** : ce qui se joue entre vous et moi, ce que vous apportez, ce que je perçois et ce que je choisis d'en faire. C'est cette seconde acception qui guide ma pratique.
 
-L'enjeu se situe donc dans la rencontre plus que dans la technique. Il y a d'un côté ce que vous vivez et décrivez, de l'autre l'hypothèse que je formule pour donner du sens à ce que j'entends. Cette hypothèse est utile — elle ouvre une direction de travail — mais elle en referme d'autres. L'intégration consiste précisément à rester conscient de ce mouvement et à savoir abandonner une piste quand elle ne produit rien, comme le ferait un enquêteur, plutôt que de chercher à avoir raison.
+L'enjeu se situe donc dans la rencontre plus que dans la technique. Il y a d'un côté ce que vous vivez et décrivez, de l'autre l'hypothèse que je formule pour donner du sens à ce que j'entends. Cette hypothèse est utile, elle ouvre une direction de travail, mais elle en referme d'autres. L'intégration consiste précisément à rester conscient de ce mouvement et à savoir abandonner une piste quand elle ne produit rien, comme le ferait un enquêteur, plutôt que de chercher à avoir raison.
 
 ## Les quatre grands courants dont elle hérite
 
@@ -20,13 +20,13 @@ L'approche intégrative n'est pas une école supplémentaire : elle prend appui 
 - **Le courant psychanalytique et psychodynamique** s'intéresse à la vie psychique inconsciente, au sens des symptômes et au poids de l'histoire du sujet.
 - **Le courant humaniste, existentiel et phénoménologique** part de votre expérience vécue telle que vous la décrivez, de votre liberté et de votre besoin de sens.
 - **Les thérapies cognitives et comportementales** analysent les pensées, les émotions et les comportements qui s'entretiennent mutuellement, et proposent des expériences correctrices concrètes.
-- **Le courant systémique et stratégique** regarde la personne dans ses liens — famille, couple, travail — et considère qu'un symptôme remplit souvent une fonction dans un système.
+- **Le courant systémique et stratégique** regarde la personne dans ses liens (famille, couple, travail) et considère qu'un symptôme remplit souvent une fonction dans un système.
 
 Chacun de ces courants porte une conception de l'être humain, du symptôme et du changement, et chacun est né dans un contexte social et historique donné. Aucun ne détient une vérité définitive. La question utile n'est donc pas de savoir quelle théorie a raison, mais laquelle **vous parle et vous fait avancer** à ce moment de votre vie.
 
 ## Un socle psychodynamique, des outils assimilés
 
-Intégrer ne veut pas dire faire un peu de tout. Ma pratique relève de ce qu'on appelle une **intégration assimilative** : un ancrage théorique stable — pour moi la [psychothérapie psychodynamique](/psychotherapie-psychodynamique/) — dans lequel viennent s'intégrer des outils empruntés à d'autres courants, sans que le fil de compréhension ne se perde.
+Intégrer ne veut pas dire faire un peu de tout. Ma pratique relève de ce qu'on appelle une **intégration assimilative** : un ancrage théorique stable, pour moi la [psychothérapie psychodynamique](/psychotherapie-psychodynamique/), dans lequel viennent s'intégrer des outils empruntés à d'autres courants, sans que le fil de compréhension ne se perde.
 
 Selon les besoins, l'accompagnement peut ainsi faire appel à :
 
@@ -35,8 +35,8 @@ Selon les besoins, l'accompagnement peut ainsi faire appel à :
 - des exercices de **mise à distance** : observer une pensée ou une émotion sans être entièrement emporté par elle ;
 - un travail sur les **schémas relationnels** et sur l'histoire de vie ;
 - une lecture **systémique** de votre situation : la place que vous occupez dans votre famille, votre couple, votre milieu professionnel ;
-- des outils issus de mes formations complémentaires en **psychotraumatisme**, en **addictions** (substances, jeux, écrans) et en intégration du cycle de la vie ;
-- un travail sur la **motivation au changement**, utile lorsqu'une part de vous souhaite changer et qu'une autre hésite — ce qui est la règle, non l'exception.
+- des outils issus de mes formations complémentaires en **psychotraumatisme**, en **addictions** (avec ou sans substance/comportements) et en intégration du cycle de la vie ;
+- un travail sur la **motivation au changement**, utile lorsqu'une part de vous souhaite changer et qu'une autre hésite, ce qui est la règle plutôt que l'exception.
 
 Un outil n'a pas de pouvoir en lui-même. Ce qui compte, c'est le savoir et l'expérience avec lesquels il est employé, et la cohérence de l'ensemble dans lequel il prend place. Un exercice isolé, sorti de toute compréhension de votre fonctionnement, ne produit généralement rien de durable.
 
@@ -44,7 +44,7 @@ Un outil n'a pas de pouvoir en lui-même. Ce qui compte, c'est le savoir et l'ex
 
 Les recherches internationales sur l'efficacité des psychothérapies convergent vers un résultat qui a longtemps dérangé : une part importante de ce qui produit le changement ne dépend pas de la technique employée, mais de facteurs communs à toutes les approches.
 
-**L'alliance thérapeutique** en est le principal. Il s'agit de la qualité du lien de travail entre nous : la confiance, l'accord sur les objectifs, le sentiment d'être compris. Cette alliance est une condition nécessaire du changement, mais elle n'y suffit pas — et elle n'est pas donnée d'avance : elle se construit, se fragilise parfois, et les moments où elle se tend sont eux-mêmes matière à travail.
+**L'alliance thérapeutique** en est le principal. Il s'agit de la qualité du lien de travail entre nous : la confiance, l'accord sur les objectifs, le sentiment d'être compris. Cette alliance est une condition nécessaire du changement, mais elle n'y suffit pas, et elle n'est pas donnée d'avance : elle se construit, se fragilise parfois, et les moments où elle se tend sont eux-mêmes matière à travail.
 
 **Le cadre** compte autant. La régularité des séances, la durée, la constance de ce qui se passe d'une fois sur l'autre : ce cadre n'est pas une formalité administrative. C'est en son sein que vos difficultés récurrentes viennent s'incarner et deviennent observables, donc travaillables.
 
@@ -70,7 +70,7 @@ Enfin, la notion d'efficacité elle-même mérite d'être interrogée. La dispar
 
 ## Pour qui cette approche est-elle indiquée ?
 
-J'accompagne les adultes à partir de 16 ans, au cabinet comme en visioconsultation. L'approche intégrative est particulièrement adaptée lorsque :
+J'accompagne les adultes et adolescents à partir de 16 ans, au cabinet comme en visioconsultation. L'approche intégrative est particulièrement adaptée lorsque :
 
 - vous traversez une période de **crise ou de surcharge** et avez besoin d'outils concrets rapidement mobilisables ;
 - vous souffrez d'**anxiété, de phobies, de stress chronique** ou de manifestations corporelles envahissantes ;
@@ -83,11 +83,11 @@ Cette approche a aussi ses limites, et il est juste de les nommer. Une psychoth�
 
 ## Comment se déroule l'accompagnement ?
 
-**La première consultation** (60 minutes) est un temps de rencontre et d'évaluation. Vous exposez ce qui vous amène, à votre manière ; je vous pose des questions sur votre situation actuelle, votre parcours et vos antécédents. Nous dégageons ensemble une première compréhension de vos difficultés et définissons un cadre de travail : fréquence, objectifs, modalités. C'est aussi votre moment pour vérifier si vous vous sentez à l'aise avec moi — cette impression compte, car la qualité du lien conditionne une grande part des effets d'une thérapie.
+**La première consultation** (60 minutes) est un temps de rencontre et d'évaluation. Vous exposez ce qui vous amène, à votre manière ; je vous pose des questions sur votre situation actuelle, votre parcours et vos antécédents. Nous dégageons ensemble une première compréhension de vos difficultés et définissons un cadre de travail : fréquence, objectifs, modalités. C'est aussi votre moment pour vérifier si vous vous sentez à l'aise avec moi. Cette impression compte, car la qualité du lien conditionne une grande part des effets d'une thérapie.
 
-**Les séances de suivi** durent 45 minutes. Leur rythme est le plus souvent hebdomadaire ou bimensuel au début, puis s'espace à mesure que les choses se stabilisent. Une séance alterne généralement entre la reprise de ce que vous avez traversé depuis la dernière fois, un travail plus centré sur un mécanisme ou une situation, et parfois l'expérimentation d'un outil que vous pourrez reprendre entre les séances.
+**Les séances de suivi** durent 45 minutes. Le rythme est décidé ensemble au début de la prise en charge et peut être revu au cours de la thérapie, en fonction des besoins du moment. Il s'espace à mesure que les choses se stabilisent. Une séance alterne généralement entre la reprise de ce que vous avez traversé depuis la dernière fois, un travail plus centré sur un mécanisme ou une situation, et parfois l'expérimentation d'un outil que vous pourrez reprendre entre les séances.
 
-**La durée du suivi** n'est pas fixée à l'avance. Certaines demandes se travaillent en quelques mois ; d'autres appellent un accompagnement plus long. Nous faisons régulièrement le point sur ce qui a bougé et sur ce qui reste à travailler, et vous êtes libre d'interrompre à tout moment — l'idéal étant d'en parler en séance plutôt que de s'arrêter sans mot dire.
+**La durée du suivi** n'est pas fixée à l'avance. Certaines demandes se travaillent en quelques mois ; d'autres appellent un accompagnement plus long. Nous faisons régulièrement le point sur ce qui a bougé et sur ce qui reste à travailler, et vous êtes libre d'interrompre à tout moment, l'idéal étant d'en parler en séance plutôt que de s'arrêter sans mot dire.
 
 Tout ce qui se dit en séance est couvert par le secret professionnel, dans les limites prévues par la loi et le code de déontologie des psychologues.
 

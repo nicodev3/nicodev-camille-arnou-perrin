@@ -35,6 +35,7 @@
   },
   "practice": {
     "audience": [
+      "adolescents",
       "adultes"
     ],
     "audienceOther": "à partir de 16 ans",
@@ -152,7 +153,7 @@
   },
   "seo": {
     "siteName": "Cabinet de psychologie de Pierre Jeanet",
-    "description": "Psychologue pour adultes à partir de 16 ans, au Chesnay. Accompagnement de l'anxiété, du stress, des addictions, des traumatismes et des troubles de l'humeur, au cabinet et en visio.",
+    "description": "Psychologue pour adolescents et adultes à partir de 16 ans, au Chesnay. Accompagnement de l'anxiété, du stress, des addictions, des traumatismes et des troubles de l'humeur, au cabinet et en visio.",
     "baseUrl": "https://exemple.fr",
     "ogImage": "https://exemple.fr/og.jpg"
   },

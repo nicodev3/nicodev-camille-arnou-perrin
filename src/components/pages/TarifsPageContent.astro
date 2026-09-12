@@ -9,6 +9,7 @@ import {
   SITE_BOOKING_SECONDARY_LABEL,
 } from "../../lib/constants";
 
+/** CMS (`tarifs.md`) si renseigné ; sinon `client.pricing.items` (questionnaire). */
 const copy = await getSiteCopy("tarifs");
 const pricingItems =
   copy.data.items && copy.data.items.length > 0 ? copy.data.items : client.pricing.items;

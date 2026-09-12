@@ -1,10 +1,17 @@
 ---
 items:
-  - name: "Consultation individuelle"
+  - name: "Adulte - Consultation de suivi psychologique"
     price: 70
-    durationMinutes: 50
-    note: "Adultes à partir de 16 ans"
-  - name: "Bilan psychologique"
-    price: 120
-    durationMinutes: 90
+    durationMinutes: 45
+  - name: "Adulte - Première consultation psychologique"
+    price: 70
+    durationMinutes: 60
+    note: "Premier rendez-vous au cabinet"
+  - name: "16-20 ans - Consultation de suivi psychologique"
+    price: 70
+    durationMinutes: 45
+  - name: "16-20 ans - Première consultation psychologique"
+    price: 70
+    durationMinutes: 60
+    note: "Premier rendez-vous au cabinet"
 ---

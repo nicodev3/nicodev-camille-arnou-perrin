@@ -25,10 +25,10 @@ La collection « Pages d’approches » est générée au build : une page n’a
 | --------------------------------------------------------------------------------- | ------------------------ |
 | FAQ, titre H1, sous-titre hero                                                    | Template + `client.json` |
 | À propos, contact, pourquoi consulter, mentions légales, liste d’articles         | Template + `client.json` |
-| Chapô / textes de pages tarifs (hors prestations), moyens de paiement, conditions | Template + `client.json` |
+| Moyens de paiement, conditions                                                    | Template + `client.json` |
 | Identité, horaires, SEO                                                           | `client.json`            |
 
-Les prestations affichées sur `/tarifs/` viennent du CMS. Si la liste CMS est vide, le site retombe sur `client.pricing.items` (questionnaire).
+Les prestations affichées sur `/tarifs/` viennent du CMS (`tarifs.md`). Si la liste CMS est vide, le site retombe sur `client.pricing.items` (questionnaire).
 
 ## Local (sans GitHub)
 

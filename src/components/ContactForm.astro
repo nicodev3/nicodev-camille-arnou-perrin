@@ -13,8 +13,9 @@ const sent = Astro.url.searchParams.get("sent") === "1";
   aria-labelledby="contact-form-heading"
   data-component="contact.form"
 >
+  <p class="note">Écrire au cabinet</p>
   <h2 id="contact-form-heading">Envoyer un message</h2>
-  <p class="note">
+  <p>
     Une réponse vous est apportée rapidement, généralement sous 24 à 48 heures ouvrées.
   </p>
 
@@ -26,7 +27,7 @@ const sent = Astro.url.searchParams.get("sent") === "1";
     )
   }
 
-  <form class="space-y-4" method="POST" action={action}>
+  <form class="space-y-5" method="POST" action={action}>
     <input type="hidden" name="_next" value={nextUrl} />
     <input
       type="hidden"
@@ -80,11 +81,11 @@ const sent = Astro.url.searchParams.get("sent") === "1";
       <label for="contact-message">
         Message <span aria-hidden="true">*</span>
       </label>
-      <textarea id="contact-message" name="message" required rows={5} class="form-field"></textarea>
-      <p class="note">Les champs marqués d’un * sont obligatoires.</p>
+      <textarea id="contact-message" name="message" required rows={6} class="form-field"></textarea>
+      <p class="form-hint">Les champs marqués d’un * sont obligatoires.</p>
     </div>
 
-    <p class="note">Vos informations restent confidentielles et ne sont jamais partagées.</p>
+    <p class="form-hint">Vos informations restent confidentielles et ne sont jamais partagées.</p>
     <button type="submit" class="cta-primary"> Envoyer le message </button>
   </form>
 </section>

@@ -500,6 +500,7 @@ button.cta-primary:hover,
 [data-component="page"] .page-block > h2,
 [data-component="panel.conditions"] > h2,
 [data-component="panel.credentials"] > h2,
+[data-component="contact.card"] h2,
 [data-component="contact.form"] > h2,
 [data-component="contact.hours-block"] > h2 {
   font-family: var(--font-serif);
@@ -641,54 +642,133 @@ button.cta-primary:hover,
 }
 
 /* === Contact === */
+[data-component="contact.info"] {
+  margin-top: 0.5rem;
+  scroll-margin-top: 8rem;
+}
+
 [data-component="contact.card"] {
   padding: 2rem;
   background: var(--stitch-card);
   border: 1px solid var(--stitch-border);
   border-radius: var(--radius-xl);
+  box-shadow: var(--stitch-shadow-card);
 }
 
-[data-component="contact.card"] > div > div:first-child > p:first-child {
+@media (min-width: 640px) {
+  [data-component="contact.card"] {
+    padding: 3rem;
+  }
+}
+
+[data-component="contact.card"] .note {
+  margin-bottom: 0.25rem;
+}
+
+[data-component="contact.card"] h2 {
   font-family: var(--font-serif);
-  font-size: var(--text-lg);
   font-weight: 400;
+  letter-spacing: -0.02em;
   color: var(--color-fg);
-  margin-bottom: 0.5rem;
+  margin: 0.25rem 0 0;
 }
 
-[data-component="contact.card"] p {
+[data-component="contact.card"] .contact-detail {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+}
+
+[data-component="contact.card"] .contact-detail > svg {
+  margin-top: 0.125rem;
+  color: var(--stitch-sage);
+}
+
+[data-component="contact.card"] .contact-detail p {
+  margin: 0;
   color: var(--color-muted);
   line-height: 1.7;
 }
 
+[data-component="contact.card"] .contact-detail .note {
+  color: var(--color-fg);
+}
+
 [data-component="contact.card"] a:not(.cta-primary):not(.cta-secondary) {
   color: var(--color-fg);
+  font-weight: 500;
   text-decoration: none;
+  transition: color 0.15s ease;
 }
 
 [data-component="contact.card"] a:not(.cta-primary):not(.cta-secondary):hover {
-  color: var(--color-primary);
+  color: var(--stitch-sage);
+}
+
+[data-component="contact.card"] .contact-actions {
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--stitch-border);
+}
+
+[data-component="contact.card"] .grid:has([data-component="contact.map"][hidden]) .flex:has(> [data-component="contact.map"]) {
+  min-height: 0;
+  height: 100%;
+}
+
+[data-component="contact.card"] .grid:has([data-component="contact.map"][hidden]) [data-component="contact.access"] {
+  flex: 1;
 }
 
 [data-component="contact.map"] {
+  position: relative;
+  z-index: 0;
+  isolation: isolate;
+  min-height: 20rem;
   border-radius: var(--radius-xl);
   overflow: hidden;
   background: var(--stitch-cream-alt);
   border: 1px solid var(--stitch-border);
+  box-shadow: var(--stitch-shadow-card);
+}
+
+[data-component="contact.access"] {
+  margin: 0;
+  padding: 1rem 1.25rem;
+  background: var(--stitch-card);
+  border: 1px solid var(--stitch-border);
+  border-radius: var(--radius-xl);
+  box-shadow: var(--stitch-shadow-card);
+  font-family: var(--font-sans);
+  font-size: var(--text-sm);
+  color: var(--color-muted);
+  line-height: 1.7;
+  white-space: pre-line;
 }
 
 [data-component="contact.hours"],
 [data-component="contact.waiting"] {
-  padding: 1.5rem;
-  background: var(--stitch-card);
-  border: 1px solid var(--stitch-border);
+  padding: 2rem;
+  background: var(--stitch-sage-surface);
+  border: 1px solid var(--stitch-sage-border);
   border-radius: var(--radius-xl);
 }
 
 [data-component="contact.hours"] > p,
 [data-component="contact.waiting"] p {
+  margin: 1rem 0 0;
   color: var(--color-muted);
   line-height: 1.7;
+  font-size: var(--text-sm);
+}
+
+[data-component="contact.hours-block"] > .note {
+  margin-bottom: 0.25rem;
+}
+
+[data-component="contact.hours-block"] > h2 {
+  font-size: var(--text-2xl);
+  margin-top: 0.25rem;
+  margin-bottom: 1.25rem;
 }
 
 [data-component="contact.hours-block"] table {
@@ -702,20 +782,52 @@ button.cta-primary:hover,
   text-align: left;
   font-weight: 600;
   color: var(--color-fg);
-  padding: 0.5rem 0.75rem 0.5rem 0;
-  border-bottom: 1px solid var(--stitch-border);
+  padding: 0.75rem 0.75rem 0.75rem 0;
+  border-bottom: 1px solid var(--stitch-sage-border);
 }
 
 [data-component="contact.hours-block"] td {
   text-align: right;
   color: var(--color-muted);
-  padding: 0.5rem 0;
-  border-bottom: 1px solid var(--stitch-border);
+  padding: 0.75rem 0;
+  border-bottom: 1px solid var(--stitch-sage-border);
+}
+
+[data-component="contact.hours-block"] tr:last-child th,
+[data-component="contact.hours-block"] tr:last-child td {
+  border-bottom: 0;
+}
+
+[data-component="contact.form"] {
+  padding: 2rem;
+  background: var(--stitch-card);
+  border: 1px solid var(--stitch-border);
+  border-radius: var(--radius-xl);
+  box-shadow: var(--stitch-shadow-card);
+  scroll-margin-top: 8rem;
+}
+
+@media (min-width: 640px) {
+  [data-component="contact.form"] {
+    padding: 2.5rem;
+  }
 }
 
 [data-component="contact.form"] > .note {
-  margin-bottom: 1.5rem;
+  margin-bottom: 0.25rem;
+}
+
+[data-component="contact.form"] > h2 {
+  font-size: var(--text-3xl);
+  margin-top: 0.25rem;
+  margin-bottom: 0.75rem;
+}
+
+[data-component="contact.form"] > p:not(.note):not([role="status"]):not(.form-hint) {
+  margin: 0 0 1.5rem;
   color: var(--color-muted);
+  line-height: 1.7;
+  max-width: 36rem;
 }
 
 [data-component="contact.form"] [role="status"] {
@@ -739,10 +851,30 @@ button.cta-primary:hover,
   color: var(--color-muted);
 }
 
+[data-component="contact.form"] label span[aria-hidden="true"] {
+  color: var(--color-primary);
+}
+
+[data-component="contact.form"] .form-hint {
+  margin: 0.5rem 0 0;
+  font-family: var(--font-sans);
+  font-size: var(--text-sm);
+  color: var(--stitch-ink-light);
+  line-height: 1.6;
+  letter-spacing: 0;
+  text-transform: none;
+  font-weight: 400;
+}
+
+[data-component="contact.form"] > .form-hint {
+  margin-top: 0;
+  margin-bottom: 0.25rem;
+}
+
 .form-field {
   font-family: var(--font-sans);
   color: var(--color-fg);
-  background: var(--stitch-card);
+  background: var(--color-bg);
   border: 1px solid var(--stitch-border);
   border-radius: var(--stitch-radius-md);
   transition:
@@ -758,6 +890,11 @@ button.cta-primary:hover,
 
 .form-field::placeholder {
   color: var(--stitch-ink-light);
+}
+
+[data-component="contact.form"] textarea.form-field {
+  min-height: 10rem;
+  resize: vertical;
 }
 
 /* === À propos === */

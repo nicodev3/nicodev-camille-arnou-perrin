@@ -1,8 +1,11 @@
 ---
-import { MessageCircle, CalendarDays } from "@lucide/astro";
+import { MessageCircle, CalendarDays, MapPin, Phone, Mail, Globe } from "@lucide/astro";
 import { client } from "../lib/client";
-import { businessAddressText, businessStreetLines } from "../lib/client/businessAddress";
-import { resolvedBookingPrimaryHref } from "../lib/client/siteBooking";
+import {
+  bookingPrimaryIsExternal,
+  resolvedBookingPrimaryHref,
+  SITE_BOOKING_PRIMARY_LABEL,
+} from "../lib/client/siteBooking";
 import { resolvedWhatsappHref } from "../lib/client/whatsapp";
 
 interface Props {
@@ -13,69 +16,142 @@ const { stacked = false } = Astro.props;
 const b = client.business;
 const channels = new Set(client.contact.channels.selected);
 const accessNote = client.contact.accessNote ?? "";
+const placeLabel = b.addressLine2?.trim() || "Adresse";
+const street = b.addressLine1.trim();
+const bookingHref = resolvedBookingPrimaryHref(client);
+const bookingExternal = bookingPrimaryIsExternal(bookingHref);
+const otherChannel = channels.has("other") ? (client.contact.channels.other?.trim() ?? "") : "";
+const otherHref = otherChannelHref(otherChannel);
+const hasActions =
+  channels.has("doctolib") || channels.has("phone") || channels.has("whatsapp");
+
+function displayPhone(phone: string): string {
+  const digits = phone.replace(/\D/g, "");
+  if (digits.length === 10) {
+    return `${digits.slice(0, 2)} ${digits.slice(2, 4)} ${digits.slice(4, 6)} ${digits.slice(6, 8)} ${digits.slice(8, 10)}`;
+  }
+  return phone;
+}
+
+function otherChannelHref(value: string): string | undefined {
+  if (/^https?:\/\//i.test(value)) return value;
+  if (/^[\w.-]+\.[a-z]{2,}(\/.*)?$/i.test(value)) return `https://${value}`;
+  return undefined;
+}
 ---
 
 <section data-component="contact.card">
-  <div class:list={["grid gap-6", !stacked && "md:grid-cols-2"]}>
-    <div class="space-y-3">
-      <p>Cabinet {b.fullName}</p>
-      {businessStreetLines(b).map((line) => <p>{line}</p>)}
-      <p>{b.postalCode} {b.city}</p>
-      {accessNote && <p class="note">{accessNote}</p>}
+  <div class:list={["grid items-stretch gap-6", !stacked && "md:grid-cols-2 md:gap-8"]}>
+    <div class="flex flex-col justify-between gap-8">
+      <div class="space-y-6">
+        <div>
+          <p class="note">Informations pratiques</p>
+          <h2>Cabinet de consultation</h2>
+        </div>
+
+        <div class="contact-detail">
+          <MapPin class="size-5 shrink-0" size={20} aria-hidden="true" />
+          <div>
+            <p class="note">{placeLabel}</p>
+            {street && <p>{street}</p>}
+            <p>{b.postalCode} {b.city}</p>
+          </div>
+        </div>
+
+        {
+          channels.has("phone") && (
+            <div class="contact-detail">
+              <Phone class="size-5 shrink-0" size={20} aria-hidden="true" />
+              <div>
+                <p class="note">Téléphone</p>
+                <p>
+                  <a href={`tel:${b.phone.replace(/\s/g, "")}`}>{displayPhone(b.phone)}</a>
+                </p>
+              </div>
+            </div>
+          )
+        }
+
+        {
+          channels.has("email") && (
+            <div class="contact-detail">
+              <Mail class="size-5 shrink-0" size={20} aria-hidden="true" />
+              <div>
+                <p class="note">E-mail</p>
+                <p>
+                  <a href={`mailto:${b.email}`}>{b.email}</a>
+                </p>
+              </div>
+            </div>
+          )
+        }
+
+        {
+          otherChannel && (
+            <div class="contact-detail">
+              <Globe class="size-5 shrink-0" size={20} aria-hidden="true" />
+              <div>
+                <p class="note">Autre</p>
+                <p>
+                  {otherHref ? (
+                    <a href={otherHref} target="_blank" rel="noopener noreferrer">
+                      {otherChannel}
+                    </a>
+                  ) : (
+                    otherChannel
+                  )}
+                </p>
+              </div>
+            </div>
+          )
+        }
+      </div>
+
       {
-        channels.has("phone") && (
-          <p>
-            <a href={`tel:${b.phone.replace(/\s/g, "")}`}>{b.phone}</a>
-          </p>
-        )
-      }
-      {
-        channels.has("email") && (
-          <p>
-            <a href={`mailto:${b.email}`}>{b.email}</a>
-          </p>
-        )
-      }
-      {
-        channels.has("other") && client.contact.channels.other && (
-          <p>{client.contact.channels.other}</p>
-        )
-      }
-      {
-        (channels.has("whatsapp") || channels.has("doctolib")) && (
-          <div class="flex flex-wrap gap-3 pt-2">
+        hasActions && (
+          <div class="contact-actions flex flex-wrap gap-3">
+            {channels.has("doctolib") && (
+              <a
+                href={bookingHref}
+                class="cta-primary"
+                {...bookingExternal ? { target: "_blank", rel: "noopener noreferrer" } : {}}
+              >
+                <CalendarDays class="size-4 shrink-0" size={16} aria-hidden="true" />
+                {SITE_BOOKING_PRIMARY_LABEL}
+              </a>
+            )}
+            {channels.has("phone") && (
+              <a href={`tel:${b.phone.replace(/\s/g, "")}`} class="cta-secondary">
+                <Phone class="size-4 shrink-0" size={16} aria-hidden="true" />
+                Appeler
+              </a>
+            )}
             {channels.has("whatsapp") && (
               <a
                 href={resolvedWhatsappHref(client)}
                 target="_blank"
                 rel="noopener noreferrer"
-                class="cta-secondary cta-secondary--sm"
+                class="cta-secondary"
               >
                 <MessageCircle class="size-4 shrink-0" size={16} aria-hidden="true" />
                 WhatsApp
-              </a>
-            )}
-            {channels.has("doctolib") && (
-              <a
-                href={resolvedBookingPrimaryHref(client)}
-                target="_blank"
-                rel="noopener noreferrer"
-                class="cta-secondary cta-secondary--sm"
-              >
-                <CalendarDays class="size-4 shrink-0" size={16} aria-hidden="true" />
-                Message via Doctolib
               </a>
             )}
           </div>
         )
       }
     </div>
-    <div
-      class="min-h-64 w-full"
-      data-component="contact.map"
-      data-map-address={businessAddressText(b)}
-      data-map-name={b.fullName}
-    >
+
+    <div class="flex min-h-80 flex-col gap-4">
+      <div
+        class="min-h-80 w-full flex-1"
+        data-component="contact.map"
+        data-map-address={`${street}, ${b.postalCode} ${b.city}`}
+        data-map-postcode={b.postalCode}
+        data-map-name={b.fullName}
+      >
+      </div>
+      {accessNote && <p data-component="contact.access">{accessNote}</p>}
     </div>
   </div>
 </section>
@@ -85,8 +161,38 @@ const accessNote = client.contact.accessNote ?? "";
   import "leaflet/dist/leaflet.css";
 
   const ZOOM = 16;
+  /** Score BAN en dessous duquel le résultat est trop approximatif. */
+  const BAN_MIN_SCORE = 0.4;
 
-  async function geocodeAddress(address: string): Promise<L.LatLngTuple | null> {
+  type BanSearchResponse = {
+    features?: {
+      geometry?: { coordinates?: [number, number] };
+      properties?: { score?: number };
+    }[];
+  };
+
+  /** Géocodage France : BAN (libellés officiels, ex. « Mal » pour Maréchal). */
+  async function geocodeBan(address: string, postcode?: string): Promise<L.LatLngTuple | null> {
+    const endpoint = new URL("https://api-adresse.data.gouv.fr/search/");
+    endpoint.searchParams.set("q", address);
+    endpoint.searchParams.set("limit", "1");
+    endpoint.searchParams.set("autocomplete", "0");
+    if (postcode) endpoint.searchParams.set("postcode", postcode);
+
+    const response = await fetch(endpoint);
+    if (!response.ok) return null;
+
+    const data = (await response.json()) as BanSearchResponse;
+    const feature = data.features?.[0];
+    const coords = feature?.geometry?.coordinates;
+    const score = feature?.properties?.score ?? 0;
+    if (!coords || coords.length < 2 || score < BAN_MIN_SCORE) return null;
+
+    const [lon, lat] = coords;
+    return [lat, lon];
+  }
+
+  async function geocodeNominatim(address: string): Promise<L.LatLngTuple | null> {
     const endpoint = new URL("https://nominatim.openstreetmap.org/search");
     endpoint.searchParams.set("format", "jsonv2");
     endpoint.searchParams.set("limit", "1");
@@ -94,13 +200,17 @@ const accessNote = client.contact.accessNote ?? "";
     endpoint.searchParams.set("accept-language", "fr");
     endpoint.searchParams.set("q", address);
 
+    const response = await fetch(endpoint, { headers: { Accept: "application/json" } });
+    if (!response.ok) return null;
+    const results: unknown = await response.json();
+    if (!Array.isArray(results) || results.length === 0) return null;
+    const { lat, lon } = results[0] as { lat: string; lon: string };
+    return [Number.parseFloat(lat), Number.parseFloat(lon)];
+  }
+
+  async function geocodeAddress(address: string, postcode?: string): Promise<L.LatLngTuple | null> {
     try {
-      const response = await fetch(endpoint, { headers: { Accept: "application/json" } });
-      if (!response.ok) return null;
-      const results: unknown = await response.json();
-      if (!Array.isArray(results) || results.length === 0) return null;
-      const { lat, lon } = results[0] as { lat: string; lon: string };
-      return [Number.parseFloat(lat), Number.parseFloat(lon)];
+      return (await geocodeBan(address, postcode)) ?? (await geocodeNominatim(address));
     } catch {
       return null;
     }
@@ -111,7 +221,7 @@ const accessNote = client.contact.accessNote ?? "";
     const address = el.dataset.mapAddress;
     if (!address) return;
 
-    const coords = await geocodeAddress(address);
+    const coords = await geocodeAddress(address, el.dataset.mapPostcode);
     if (!coords) {
       el.hidden = true;
       return;
@@ -125,6 +235,7 @@ const accessNote = client.contact.accessNote ?? "";
     L.marker(coords)
       .addTo(map)
       .bindPopup(`${el.dataset.mapName ?? "Cabinet"}<br>${address}`);
+    requestAnimationFrame(() => map.invalidateSize());
   }
 
   for (const el of document.querySelectorAll<HTMLElement>('[data-component="contact.map"]')) {

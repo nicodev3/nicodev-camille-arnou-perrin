@@ -7,20 +7,12 @@ import { enabledContactHoursRows } from "../../lib/client/contactHours";
 import { client } from "../../lib/client";
 
 const hasHours = enabledContactHoursRows(client.contact.hours).length > 0;
+const hasForm = client.contact.channels.selected.includes("form");
 const waitingListNote = client.practice.waitingListNote ?? "";
 ---
 
-<section class="page-block grid items-start gap-6 md:grid-cols-2" data-component="contact.info">
-  <ContactCard stacked />
-
-  {
-    hasHours && (
-      <div data-component="contact.hours">
-        <ContactHoursBlock />
-        {waitingListNote && <p class="mt-4">{waitingListNote}</p>}
-      </div>
-    )
-  }
+<section class="page-block" data-component="contact.info">
+  <ContactCard />
 </section>
 
 {
@@ -31,6 +23,24 @@ const waitingListNote = client.practice.waitingListNote ?? "";
   )
 }
 
-{client.contact.channels.selected.includes("form") && <ContactForm />}
+{
+  (hasForm || hasHours) && (
+    <section
+      class:list={["grid gap-6", hasForm && hasHours && "lg:grid-cols-5"]}
+    >
+      {hasForm && (
+        <div class:list={["min-w-0", hasHours && "lg:col-span-3"]}>
+          <ContactForm />
+        </div>
+      )}
+      {hasHours && (
+        <div class:list={["min-w-0", hasForm && "lg:col-span-2"]} data-component="contact.hours">
+          <ContactHoursBlock />
+          {waitingListNote && <p>{waitingListNote}</p>}
+        </div>
+      )}
+    </section>
+  )
+}
 
 <FaqSection />

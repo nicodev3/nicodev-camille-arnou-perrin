@@ -3,7 +3,21 @@ import { client } from "../../lib/client";
 import { getSpecialtyMotifSummary } from "../../lib/client/specialtyMotifSummaries.ts";
 
 const specialtyLabels = client.practice.specialties;
+const introParagraphs = (client.pourquoiConsulterPage?.intro ?? "")
+  .split(/\n{2,}/)
+  .map((paragraph) => paragraph.trim())
+  .filter(Boolean);
 ---
+
+{
+  introParagraphs.length > 0 && (
+    <section class="page-block" data-component="motifs.intro">
+      {introParagraphs.map((paragraph) => (
+        <p>{paragraph}</p>
+      ))}
+    </section>
+  )
+}
 
 <section class="page-block" data-component="motifs.list">
   <ul>

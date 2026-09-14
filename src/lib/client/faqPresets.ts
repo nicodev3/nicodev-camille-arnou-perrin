@@ -12,7 +12,7 @@ export const FAQ_PRESETS = [
     id: "rdvBooking",
     question: "Comment prendre rendez-vous ?",
     answer:
-      "Vous pouvez réserver en ligne à tout moment via Doctolib. Si vous préférez, un premier contact par e-mail permet de préciser votre besoin avant la première séance.",
+      "Vous pouvez réserver en ligne à tout moment avec le bouton « Prendre rendez-vous ». Si vous préférez, un premier contact par e-mail permet de préciser votre besoin avant la première séance.",
   },
   {
     id: "firstSession",

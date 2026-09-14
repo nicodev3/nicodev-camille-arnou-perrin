@@ -131,6 +131,24 @@ export const ClientSchema = z
         consultationModes: z.array(z.enum(["cabinet", "visio", "domicile"])).default(["cabinet"]),
         /** Phrase optionnelle sur les délais / liste d’attente (page contact). */
         waitingListNote: optionalClientString(),
+        /** Offre de supervision / analyse de la pratique (groupe animé par le praticien). */
+        supervision: z
+          .object({
+            enabled: z.boolean().default(false),
+            /** Nom du groupe (ex. « Le Cercle »). */
+            name: optionalClientString(),
+            /** Structure qui porte le groupe (ex. « MenteNova »). */
+            provider: optionalClientString(),
+            /** Page de présentation détaillée du groupe. */
+            url: optionalClientUrl(),
+            description: optionalClientString(),
+            /** Jours et horaires des groupes ouverts. */
+            schedule: optionalClientString(),
+            price: z.number().min(0).optional(),
+            /** Précision sur le tarif (ex. « par mois, pour 2 séances d’1h »). */
+            priceNote: optionalClientString(),
+          })
+          .default({ enabled: false }),
         reimbursement: z.object({
           monSoutienPsy: z.object({
             enabled: z.boolean().default(false),
@@ -157,6 +175,7 @@ export const ClientSchema = z
         approaches: [],
         languages: ["fr"],
         consultationModes: ["cabinet"],
+        supervision: { enabled: false },
         reimbursement: {
           monSoutienPsy: {
             enabled: false,
@@ -272,6 +291,12 @@ export const ClientSchema = z
         intro:
           "Une présentation de mon parcours et de ma façon d'accompagner les personnes en consultation.",
       }),
+    /** Paragraphe de présentation affiché en tête de la page « Pourquoi consulter ? ». */
+    pourquoiConsulterPage: z
+      .object({
+        intro: optionalClientString(),
+      })
+      .default({}),
     contact: z
       .object({
         hours: z
@@ -285,7 +310,9 @@ export const ClientSchema = z
             sunday: contactDaySlotSchema,
           })
           .default(() => emptyContactHours()),
-        /** Lien Doctolib (ou autre) pour le CTA « Prendre rendez-vous ». */
+        /** Précision affichée sous le tableau des horaires (créneaux sur demande, groupes…). */
+        hoursNote: optionalClientString(),
+        /** Lien de prise de rendez-vous en ligne pour le CTA « Prendre rendez-vous ». */
         bookingUrl: optionalClientUrl(),
         /** Accès / accessibilité (parking, métro, digicode, PMR…) — texte libre. */
         accessNote: optionalClientString(),
@@ -321,7 +348,7 @@ export const ClientSchema = z
           ctx.addIssue({
             code: "custom",
             message:
-              "Indiquez l’URL de votre fiche Doctolib (ou de prise de rendez-vous) lorsque le canal Doctolib est coché.",
+              "Indiquez l’URL de votre page de prise de rendez-vous en ligne lorsque ce canal est coché.",
             path: ["bookingUrl"],
           });
         }

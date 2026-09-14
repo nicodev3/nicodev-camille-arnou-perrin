@@ -1,5 +1,6 @@
 ---
 import ConditionsPanel from "../ConditionsPanel.astro";
+import SupervisionSection from "../SupervisionSection.astro";
 import MonSoutienPsyCallout from "../MonSoutienPsyCallout.astro";
 import { client } from "../../lib/client";
 import { getSiteCopy } from "../../lib/siteCopy";
@@ -32,6 +33,8 @@ const reducedRateNote = client.pricing.reducedRateNote ?? "";
   </ul>
   {reducedRateNote && <p class="mt-4">{reducedRateNote}</p>}
 </section>
+
+<SupervisionSection />
 
 <section class="page-block" data-component="pricing.payment">
   <h2>Moyens de paiement</h2>

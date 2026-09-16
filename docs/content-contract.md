@@ -44,7 +44,7 @@ Le contrat accepte notamment :
 
 ## Donnees exclues
 
-Le menu du site n’est pas dans le contrat : il est dérivé des pages Astro (`export const pageNav` dans `src/pages/*.astro`) et des pages pratique activées.
+Le menu du site n’est pas dans le contrat : il est dérivé des pages Astro (`export const pageNav` dans `src/pages/*.astro`), des pages pratique activées et de l’entrée « Articles », affichée dès qu’un article est visible.
 
 Les champs de design ne font plus partie du contrat de contenu :
 

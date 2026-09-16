@@ -1,4 +1,5 @@
 ---
+import MotifsOpenInvitation from "../MotifsOpenInvitation.astro";
 import { client } from "../../lib/client";
 
 interface Props {
@@ -20,6 +21,7 @@ const specialtyLabels = client.practice.specialties;
             <li class="px-4 py-2 text-sm leading-tight">{label}</li>
           ))}
         </ul>
+        <MotifsOpenInvitation headingLevel={3} />
         <div class="pt-3">
           <a href={detailsPageHref} class="cta-secondary cta-secondary--sm">
             Pourquoi consulter ? — Voir tous les motifs

@@ -3,6 +3,7 @@ import { Image } from "astro:assets";
 import camillePerrin from "../../assets/photos/camille-perrin.jpeg";
 import { CalendarDays, MessagesSquare } from "@lucide/astro";
 import { client } from "../../lib/client";
+import { businessAreaLabel } from "../../lib/client/businessAddress";
 import { getSiteCopy } from "../../lib/siteCopy";
 import { heroEyebrowTagline } from "../../lib/client/heroEyebrowTagline";
 import { heroConsultationTaglineAfterPour } from "../../lib/client/heroConsultationTagline";
@@ -24,6 +25,14 @@ const heroConsultTagline = `${heroConsultPrefix}${heroConsultationTaglineAfterPo
 const heroEyebrow = heroEyebrowTagline(client);
 const bookingHref = resolvedBookingPrimaryHref(client);
 const bookingExternal = bookingPrimaryIsExternal(bookingHref);
+const areaLabel = businessAreaLabel(client.business);
+
+/** Le RDV passe par le projet du praticien (ex. MenteNova) : on le nomme sous les boutons. */
+const project = client.practice.project;
+const bookingViaProject =
+  project.enabled && project.name && project.url
+    ? bookingHref.startsWith(new URL(project.url).origin)
+    : false;
 ---
 
 <div data-component="HeroSection" class="flex flex-col gap-8 md:flex-row md:items-center">
@@ -32,7 +41,7 @@ const bookingExternal = bookingPrimaryIsExternal(bookingHref);
       {heroEyebrow && <p class="text-sm md:text-base">{heroEyebrow}</p>}
       <h1>
         <span class="block">{client.business.title}</span>
-        <span class="block">{client.business.city}</span>
+        <span class="block">{areaLabel}</span>
       </h1>
       <p class="max-w-3xl">{heroConsultTagline}</p>
     </div>
@@ -56,6 +65,15 @@ const bookingExternal = bookingPrimaryIsExternal(bookingHref);
           {SITE_BOOKING_SECONDARY_LABEL}
         </a>
       </div>
+
+      {
+        bookingViaProject && (
+          <p data-component="hero.booking-note">
+            Prise de rendez-vous en ligne via {project.name}, la plateforme que je porte (création
+            d’un compte gratuit).
+          </p>
+        )
+      }
     </div>
   </div>
   <div class="shrink-0 md:w-80 lg:w-96">

@@ -5,6 +5,7 @@
     "fullName": "Camille PERRIN",
     "title": "Psychologue",
     "city": "Le Chesnay",
+    "areaLabel": "Versailles, Le Chesnay",
     "addressLine1": "3 rue du Maréchal De Lattre de Tassigny",
     "addressLine2": "Centre Via Sana Rive Droite",
     "postalCode": "78150",
@@ -77,6 +78,15 @@
       "schedule": "Premier groupe : le lundi de 20h à 21h. Un second groupe ouvrira prochainement (jour et horaire à définir).",
       "price": 59,
       "priceNote": "par mois, pour 2 séances d'1h"
+    },
+    "project": {
+      "enabled": true,
+      "name": "MenteNova",
+      "tagline": "L’écosystème du lien en santé mentale",
+      "url": "https://mentenova.fr/fr",
+      "summary": "Plateforme dédiée au lien en santé mentale : la prise de rendez-vous de mon cabinet s’y fait avec un compte gratuit, et j’y anime le groupe de supervision Le Cercle.",
+      "description": "MenteNova est le projet que je porte : une plateforme dédiée au lien en santé mentale, qui réunit des professionnels et facilite l’accès à un accompagnement. C’est par MenteNova que se prennent les rendez-vous de mon cabinet, avec la création d’un compte gratuit, et c’est également dans ce cadre que j’anime le groupe de supervision Le Cercle.",
+      "ctaLabel": "Découvrir MenteNova"
     }
   },
   "credentials": {
@@ -162,8 +172,8 @@
     }
   },
   "seo": {
-    "siteName": "Camille Perrin — Psychologue au Chesnay",
-    "description": "Psychologue pour adultes et adolescents à partir de 16 ans, au Chesnay. Accompagnement de l'anxiété, du stress, des addictions, des traumatismes et des troubles de l'humeur, au cabinet et en visio.",
+    "siteName": "Camille Perrin — Psychologue à Versailles, Le Chesnay",
+    "description": "Psychologue pour adultes et adolescents à partir de 16 ans, à Versailles, Le Chesnay. Accompagnement de l'anxiété, du stress, des addictions, des traumatismes et des troubles de l'humeur, au cabinet et en visio.",
     "baseUrl": "https://exemple.fr",
     "ogImage": "https://exemple.fr/og.jpg"
   },
@@ -293,6 +303,11 @@
     ]
   },
   "pourquoiConsulterPage": {
-    "intro": "Psychologue clinicienne et psychothérapeute, je vous accueille avec bienveillance et écoute au sein d’un cabinet pluridisciplinaire situé au Chesnay-Rocquencourt. Mon approche est psychodynamique et centrée sur vos besoins et votre singularité, afin de vous accompagner dans les difficultés que vous traversez : anxiété, stress, dépression, troubles émotionnels, estime de soi, relations interpersonnelles, ou encore problématiques liées aux addictions et aux traumatismes.\n\nJ’accompagne les adultes et les adolescents (à partir de 16 ans) dans le cadre de prises en charge individuelles. Mon expérience en institution m’a permis de travailler auprès de personnes confrontées à différentes problématiques. Cette diversité de parcours me permet d’adapter mon accompagnement à chaque situation pour proposer un suivi personnalisé.\n\nRencontrer un/une psychologue permet d’accéder à un espace de parole, c’est un moment pour soi où l’on peut parler sans être jugé, être accompagné dans la confiance et la bienveillance. Parler permet souvent de se libérer, de gérer ses émotions, de mieux se comprendre et de pouvoir avancer.\n\nQue ce soit pour un soutien ponctuel ou un accompagnement au long cours, mon objectif est de vous aider à mieux comprendre vos émotions, vos pensées et vos comportements, afin de retrouver un mieux-être et un équilibre psychologique.\n\nLes consultations se déroulent en présentiel au cabinet ou en téléconsultation, selon vos préférences. N’hésitez pas à prendre rendez-vous en ligne ou à me contacter pour toute question. Je suis à votre disposition pour vous accompagner sur votre chemin de mieux-être."
+    "intro": "Psychologue clinicienne et psychothérapeute, je vous accueille avec bienveillance et écoute au sein d’un cabinet pluridisciplinaire situé au Chesnay-Rocquencourt. Mon approche est psychodynamique et centrée sur vos besoins et votre singularité, afin de vous accompagner dans les difficultés que vous traversez : anxiété, stress, dépression, troubles émotionnels, estime de soi, relations interpersonnelles, ou encore problématiques liées aux addictions et aux traumatismes.\n\nJ’accompagne les adultes et les adolescents (à partir de 16 ans) dans le cadre de prises en charge individuelles. Mon expérience en institution m’a permis de travailler auprès de personnes confrontées à différentes problématiques. Cette diversité de parcours me permet d’adapter mon accompagnement à chaque situation pour proposer un suivi personnalisé.\n\nRencontrer un/une psychologue permet d’accéder à un espace de parole, c’est un moment pour soi où l’on peut parler sans être jugé, être accompagné dans la confiance et la bienveillance. Parler permet souvent de se libérer, de gérer ses émotions, de mieux se comprendre et de pouvoir avancer.\n\nQue ce soit pour un soutien ponctuel ou un accompagnement au long cours, mon objectif est de vous aider à mieux comprendre vos émotions, vos pensées et vos comportements, afin de retrouver un mieux-être et un équilibre psychologique.\n\nLes consultations se déroulent en présentiel au cabinet ou en téléconsultation, selon vos préférences. N’hésitez pas à prendre rendez-vous en ligne ou à me contacter pour toute question. Je suis à votre disposition pour vous accompagner sur votre chemin de mieux-être.",
+    "openInvitation": {
+      "enabled": true,
+      "title": "Vous ne vous reconnaissez dans aucun de ces motifs ?",
+      "text": "Il n’est pas nécessaire de mettre un nom sur ce que vous traversez pour prendre rendez-vous. Trouver un espace pour soi, un lieu d’écoute où parler sans être jugé est une raison suffisante de consulter."
+    }
   }
 }

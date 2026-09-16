@@ -1,0 +1,36 @@
+---
+import { HeartHandshake } from "@lucide/astro";
+import { client } from "../lib/client";
+
+interface Props {
+  /** Niveau de titre selon le contexte d'insertion (page ou section d'accueil). */
+  headingLevel?: 2 | 3;
+  class?: string;
+}
+
+const { headingLevel = 3, class: className } = Astro.props;
+const Heading = `h${headingLevel}` as "h2" | "h3";
+
+const invitation = client.pourquoiConsulterPage?.openInvitation;
+const title = invitation?.title?.trim() ?? "";
+const text = invitation?.text?.trim() ?? "";
+const enabled = Boolean(invitation?.enabled && text);
+---
+
+{
+  enabled && (
+    <section
+      class:list={["page-block", className]}
+      data-component="motifs.open-invitation"
+      aria-label={title || "Consulter sans motif précis"}
+    >
+      {title && (
+        <Heading>
+          <HeartHandshake class="size-5 shrink-0" size={20} aria-hidden="true" />
+          {title}
+        </Heading>
+      )}
+      <p>{text}</p>
+    </section>
+  )
+}

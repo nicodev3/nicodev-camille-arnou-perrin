@@ -7,11 +7,12 @@ export const pageNav = {
 import StandardPageLayout from "../layouts/StandardPageLayout.astro";
 import AboutPageContent from "../components/pages/AboutPageContent.astro";
 import { client } from "../lib/client";
+import { businessAreaLabel } from "../lib/client/businessAddress";
 ---
 
 <StandardPageLayout
   title="À propos"
-  description={`Découvrez mon parcours et ma pratique à ${client.business.city}.`}
+  description={`Découvrez mon parcours et ma pratique à ${businessAreaLabel(client.business)}.`}
   hidePageHeader
 >
   <AboutPageContent />

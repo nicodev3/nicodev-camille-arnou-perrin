@@ -1,0 +1,58 @@
+---
+import { ExternalLink, Sparkles } from "@lucide/astro";
+import { client } from "../lib/client";
+
+interface Props {
+  /** Niveau de titre selon le contexte d'insertion (page ou section d'accueil). */
+  headingLevel?: 2 | 3;
+  class?: string;
+}
+
+const { headingLevel = 2, class: className } = Astro.props;
+const Heading = `h${headingLevel}` as "h2" | "h3";
+
+const project = client.practice.project;
+const name = project.name?.trim() ?? "";
+const enabled = Boolean(project.enabled && name);
+const paragraphs = (project.description ?? "")
+  .split(/\n{2,}/)
+  .map((paragraph) => paragraph.trim())
+  .filter(Boolean);
+const ctaLabel = project.ctaLabel?.trim() || `Découvrir ${name}`;
+---
+
+{
+  enabled && (
+    <section
+      class:list={["page-block", className]}
+      data-component="project.block"
+      aria-label={name}
+    >
+      <Heading>
+        <Sparkles class="size-5 shrink-0" size={20} aria-hidden="true" />
+        {name}
+      </Heading>
+      {project.tagline && (
+        <p class="note" data-component="project.tagline">
+          {project.tagline}
+        </p>
+      )}
+      {paragraphs.map((paragraph) => (
+        <p>{paragraph}</p>
+      ))}
+      {project.url && (
+        <p>
+          <a
+            href={project.url}
+            class="cta-secondary cta-secondary--sm"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <ExternalLink class="size-4 shrink-0" size={16} aria-hidden="true" />
+            {ctaLabel}
+          </a>
+        </p>
+      )}
+    </section>
+  )
+}

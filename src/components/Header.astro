@@ -13,9 +13,10 @@ const { primary: primaryNavItems, contact: contactNavItem } = splitContactNavIte
 const showPracticesNav = practices.length > 0;
 
 function navLinkIsActive(href: string): boolean {
-  return href === "/"
-    ? currentPath === "/"
-    : currentPath === href || currentPath.startsWith(`${href}/`);
+  if (href === "/") return currentPath === "/";
+  // Sans slash final pour que « Articles » reste actif sur /articles/<slug>/.
+  const base = href.replace(/\/+$/, "");
+  return currentPath === href || currentPath === base || currentPath.startsWith(`${base}/`);
 }
 const practicesSectionActive = practices.some((it) => navLinkIsActive(it.href));
 

@@ -7,7 +7,7 @@ import { siteFonts } from "../design/fonts.mjs";
 import { client } from "../lib/client";
 import { resolvedFaqEntries } from "../lib/client/faqPresets.ts";
 import { professionMainEntityJsonLdType } from "../lib/client/professionCopy.ts";
-import { businessStreetLines } from "../lib/client/businessAddress";
+import { businessAreaLocalities, businessStreetLines } from "../lib/client/businessAddress";
 import Footer from "../components/Footer.astro";
 
 interface Props {
@@ -37,6 +37,11 @@ const mainEntityJsonLd = JSON.stringify({
     addressLocality: client.business.city,
     addressCountry: "FR",
   },
+  /** Communes desservies (référencement local) : « Versailles, Le Chesnay » → deux entrées. */
+  areaServed: businessAreaLocalities(client.business).map((locality) => ({
+    "@type": "City",
+    name: locality,
+  })),
 });
 
 const faqPageJsonLd = JSON.stringify({

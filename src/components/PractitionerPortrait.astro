@@ -17,6 +17,12 @@ interface Props {
 }
 
 const { class: figureClass } = Astro.props;
+
+/*
+ * Cadrage : le conteneur est carré mais la photo est verticale. Le recadrage est laissé au CSS
+ * (`object-top`) plutôt qu'à la génération d'image, qui découperait depuis le centre et couperait
+ * le haut de la tête.
+ */
 ---
 
 <figure class={figureClass} data-component="ui.practitioner-portrait">
@@ -26,12 +32,10 @@ const { class: figureClass } = Astro.props;
         <Image
           src={photo}
           alt={`${client.business.fullName}, ${client.business.title}`}
-          class="h-full w-full object-cover"
+          class="h-full w-full object-cover object-top"
           widths={[480, 720, 960]}
           sizes="(max-width: 768px) 92vw, 360px"
           quality={85}
-          width={420}
-          height={420}
         />
       ) : (
         <div class="flex h-full min-h-64 w-full items-center justify-center p-6 text-center text-sm">

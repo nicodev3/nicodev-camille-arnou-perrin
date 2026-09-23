@@ -749,6 +749,60 @@ button.cta-primary:hover,
   white-space: pre-line;
 }
 
+[data-component="contact.photos"] {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+[data-component="contact.photos"] .note {
+  margin-bottom: 0.25rem;
+}
+
+[data-component="contact.photos"] h2 {
+  font-family: var(--font-serif);
+  font-weight: 400;
+  letter-spacing: -0.02em;
+  color: var(--color-fg);
+  margin: 0.25rem 0 0;
+}
+
+[data-component="contact.photos"] ul {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+@media (min-width: 640px) {
+  [data-component="contact.photos"] ul {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+[data-component="contact.photos"] figure {
+  margin: 0;
+}
+
+[data-component="contact.photos"] img {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 3 / 4;
+  object-fit: cover;
+  object-position: center;
+  border-radius: var(--radius-xl);
+}
+
+[data-component="contact.photos"] figcaption {
+  margin-top: 0.75rem;
+  font-family: var(--font-sans);
+  font-size: var(--text-sm);
+  color: var(--color-muted);
+}
+
 [data-component="contact.hours"],
 [data-component="contact.waiting"] {
   padding: 2rem;
@@ -1282,6 +1336,15 @@ button.cta-primary:hover,
 
 [data-component="project.tagline"] {
   color: var(--color-primary);
+}
+
+[data-component="project.slogan"] {
+  font-family: var(--font-serif);
+  font-size: var(--text-lg);
+  font-style: italic;
+  font-weight: 300;
+  color: var(--color-fg);
+  line-height: 1.5;
 }
 
 /* === Supervision (groupe animé par la praticienne) === */

@@ -53,6 +53,9 @@ const ctaLabel = project.ctaLabel?.trim() || `Découvrir ${name}`;
           </a>
         </p>
       )}
+      {project.slogan && (
+        <p data-component="project.slogan">{project.slogan}</p>
+      )}
     </section>
   )
 }

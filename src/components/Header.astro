@@ -20,7 +20,7 @@ function navLinkIsActive(href: string): boolean {
 }
 const practicesSectionActive = practices.some((it) => navLinkIsActive(it.href));
 
-const navLinkClass = "inline-flex h-10 items-center px-3";
+const navLinkClass = "inline-flex h-10 items-center px-2.5";
 const mobileNavLinkClass = "block px-3 py-2";
 const summaryResetClass =
   "cursor-pointer list-none select-none marker:hidden [&::-webkit-details-marker]:hidden";
@@ -42,7 +42,7 @@ const summaryResetClass =
         </a>
 
         <nav
-          class="hidden max-w-[62vw] flex-wrap items-center justify-end gap-1 text-base md:flex"
+          class="hidden shrink-0 items-center justify-end gap-0.5 text-base lg:flex"
           aria-label="Navigation principale"
         >
           {
@@ -97,7 +97,7 @@ const summaryResetClass =
           }
         </nav>
 
-        <details class="relative md:hidden">
+        <details class="relative lg:hidden">
           <summary
             class:list={["flex h-11 w-11 items-center justify-center", summaryResetClass]}
             aria-label="Ouvrir ou fermer le menu de navigation"

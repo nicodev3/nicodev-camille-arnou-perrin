@@ -1,0 +1,43 @@
+---
+import { Image } from "astro:assets";
+import salleAttente from "../assets/photos/salle-attente.jpg";
+import salleConsultation from "../assets/photos/salle-consultation.jpg";
+
+const photos = [
+  {
+    src: salleAttente,
+    alt: "Salle d'attente du centre Via Sana, Le Chesnay-Rocquencourt",
+    caption: "Salle d'attente",
+  },
+  {
+    src: salleConsultation,
+    alt: "Salle de consultation du cabinet de psychologie",
+    caption: "Salle de consultation",
+  },
+] as const;
+---
+
+<section class="page-block" data-component="contact.photos">
+  <div>
+    <p class="note">Le cabinet</p>
+    <h2>Un espace calme pour vous accueillir</h2>
+  </div>
+  <ul>
+    {
+      photos.map((photo) => (
+        <li>
+          <figure>
+            <Image
+              src={photo.src}
+              alt={photo.alt}
+              widths={[480, 720, 960]}
+              sizes="(max-width: 768px) 92vw, 420px"
+              quality={80}
+            />
+            <figcaption>{photo.caption}</figcaption>
+          </figure>
+        </li>
+      ))
+    }
+  </ul>
+</section>

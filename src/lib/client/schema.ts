@@ -166,6 +166,8 @@ export const ClientSchema = z
             summary: optionalClientString(),
             /** Présentation longue (page « À propos »). */
             description: optionalClientString(),
+            /** Devise / phrase mise en exergue (ex. « Avec des mots, tout a un sens. »). */
+            slogan: optionalClientString(),
             /** Libellé du lien sortant. Absent → « Découvrir <nom> ». */
             ctaLabel: optionalClientString(),
           })

@@ -1,4 +1,5 @@
 ---
+import CabinetPhotos from "../CabinetPhotos.astro";
 import ContactCard from "../ContactCard.astro";
 import ContactHoursBlock from "../ContactHoursBlock.astro";
 import ContactForm from "../ContactForm.astro";
@@ -14,6 +15,8 @@ const waitingListNote = client.practice.waitingListNote ?? "";
 <section class="page-block" data-component="contact.info">
   <ContactCard />
 </section>
+
+<CabinetPhotos />
 
 {
   waitingListNote && !hasHours && (

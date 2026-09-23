@@ -7,17 +7,7 @@
  * (#9E4D36 / hover #853E2B) comme dans l’export HTML Stitch.
  */
 
-/* Surcharge @theme static de global.css — nécessaire pour bg-primary / text-primary. */
-@theme {
-  --color-bg: #faf7f2;
-  --color-fg: #1f201d;
-  --color-primary: #9e4d36;
-  --color-primary-fg: #ffffff;
-  --color-accent: #eef2eb;
-  --color-muted: #5c5e57;
-  --radius-xl: 0.75rem;
-}
-
+/* Surcharge des tokens @theme static de global.css (bg-primary, text-primary, …). */
 :root,
 html {
   --color-bg: #faf7f2;

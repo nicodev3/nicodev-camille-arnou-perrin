@@ -40,7 +40,7 @@ Il arrive aussi qu'à l'issue de cet échange, une autre orientation apparaisse 
 
 ## Et si le courant ne passe pas ?
 
-C'est une question légitime et il vaut mieux se la poser tôt. La qualité de la relation entre vous et votre psychologue est l'un des éléments qui comptent le plus dans un accompagnement. Pour autant, il est souvent utile de revenir au moins une deuxième fois avant de se décider : l'appréhension du premier rendez-vous, la crainte de s'engager ou la difficulté à être en relation peuvent biaiser le ressenti — et ces éléments font parfois eux-mêmes partie du travail.
+C'est une question légitime et il vaut mieux se la poser tôt. La qualité de la relation entre vous et votre psychologue est l'un des éléments qui comptent le plus dans un accompagnement. Pour autant, il est souvent utile de revenir au moins une deuxième fois avant de se décider : l'appréhension du premier rendez-vous, la crainte de s'engager ou la difficulté à être en relation peuvent biaiser le ressenti et ces éléments font parfois eux-mêmes partie du travail.
 
 Si après une ou deux séances vous ne vous sentez pas à l'aise, vous pouvez le dire : nous en parlons et si besoin je vous aide à trouver un autre professionnel. Ce n'est pas un échec, c'est une étape normale de la recherche du bon interlocuteur.
 

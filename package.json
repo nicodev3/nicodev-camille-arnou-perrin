@@ -30,7 +30,7 @@
     "@astrojs/sitemap": "^3.7.4",
     "@lucide/astro": "^1.47.0",
     "@tailwindcss/vite": "^4.3.3",
-    "astro": "^7.3.4",
+    "astro": "^7.3.5",
     "leaflet": "^1.9.4",
     "tailwindcss": "^4.3.3",
     "zod": "^4.6.5"

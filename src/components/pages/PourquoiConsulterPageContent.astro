@@ -2,6 +2,7 @@
 import MotifsOpenInvitation from "../MotifsOpenInvitation.astro";
 import { client } from "../../lib/client";
 import { getSpecialtyMotifSummary } from "../../lib/client/specialtyMotifSummaries.ts";
+import { slugify } from "../../lib/slugify";
 
 const specialtyLabels = client.practice.specialties;
 const introParagraphs = (client.pourquoiConsulterPage?.intro ?? "")
@@ -10,26 +11,22 @@ const introParagraphs = (client.pourquoiConsulterPage?.intro ?? "")
   .filter(Boolean);
 ---
 
-{
-  introParagraphs.length > 0 && (
-    <section class="page-block" data-component="motifs.intro">
-      {introParagraphs.map((paragraph) => (
-        <p>{paragraph}</p>
-      ))}
-    </section>
-  )
-}
+{introParagraphs.length > 0 && (
+  <section class="page-block" data-component="motifs.intro">
+    {introParagraphs.map((paragraph) => (
+      <p>{paragraph}</p>
+    ))}
+  </section>
+)}
 
 <section class="page-block" data-component="motifs.list">
   <ul>
-    {
-      specialtyLabels.map((label) => (
-        <li data-component="motifs.item">
-          <p class="font-medium">{label}</p>
-          <p>{getSpecialtyMotifSummary(label)}</p>
-        </li>
-      ))
-    }
+    {specialtyLabels.map((label) => (
+      <li id={slugify(label)} data-component="motifs.item">
+        <p class="font-medium">{label}</p>
+        <p>{getSpecialtyMotifSummary(label)}</p>
+      </li>
+    ))}
   </ul>
 </section>
 

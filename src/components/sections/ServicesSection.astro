@@ -1,6 +1,7 @@
 ---
 import MotifsOpenInvitation from "../MotifsOpenInvitation.astro";
 import { client } from "../../lib/client";
+import { slugify } from "../../lib/slugify";
 
 interface Props {
   /** Page listant le détail des motifs. */
@@ -13,21 +14,26 @@ const specialtyLabels = client.practice.specialties;
 
 <section class="space-y-10" data-component="section.services">
   <h2>Motifs de consultation</h2>
-  {
-    specialtyLabels.length > 0 && (
-      <>
-        <ul class="flex flex-wrap gap-3">
-          {specialtyLabels.map((label) => (
-            <li class="px-4 py-2 text-sm leading-tight">{label}</li>
-          ))}
-        </ul>
-        <MotifsOpenInvitation headingLevel={3} />
-        <div class="pt-3">
-          <a href={detailsPageHref} class="cta-secondary cta-secondary--sm">
-            Pourquoi consulter ? — Voir tous les motifs
-          </a>
-        </div>
-      </>
-    )
-  }
+  {specialtyLabels.length > 0 && (
+    <>
+      <ul>
+        {specialtyLabels.map((label) => (
+          <li>
+            {label}
+            <a
+              class="motif-card-link"
+              href={`${detailsPageHref}#${slugify(label)}`}
+              aria-label={`Découvrir l'accompagnement — ${label}`}
+            ></a>
+          </li>
+        ))}
+      </ul>
+      <MotifsOpenInvitation headingLevel={3} />
+      <div class="pt-3">
+        <a href={detailsPageHref} class="cta-secondary cta-secondary--sm">
+          Pourquoi consulter ? — Voir tous les motifs
+        </a>
+      </div>
+    </>
+  )}
 </section>

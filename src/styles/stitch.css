@@ -297,6 +297,7 @@ button.cta-primary:hover,
 }
 
 [data-component="section.services"] li {
+  position: relative;
   counter-increment: motif;
   display: flex;
   flex-direction: column;
@@ -360,6 +361,14 @@ button.cta-primary:hover,
 
 [data-component="section.services"] li:hover::after {
   color: var(--color-primary);
+}
+
+[data-component="section.services"] .motif-card-link {
+  position: absolute;
+  inset: 0;
+  border-radius: var(--radius-xl);
+  color: inherit;
+  text-decoration: none;
 }
 
 [data-component="section.services"] .cta-secondary {

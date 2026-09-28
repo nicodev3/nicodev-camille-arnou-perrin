@@ -32,11 +32,7 @@ const summaryResetClass =
   <header data-component="ui.header">
     <div class="site-container py-3">
       <div class="flex min-h-16 items-center justify-between gap-6">
-        <a
-          href="/"
-          class="inline-flex min-w-0 flex-col gap-0.5 self-center"
-          aria-label={`Accueil — ${b.fullName}, ${b.title}`}
-        >
+        <a href="/" class="inline-flex min-w-0 flex-col gap-0.5 self-center" data-nav="home">
           <span class="leading-tight">{b.fullName}</span>
           <span class="text-sm leading-snug">{b.title}</span>
         </a>

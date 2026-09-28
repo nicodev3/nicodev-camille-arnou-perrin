@@ -1,5 +1,5 @@
 ---
-title: "La première séance chez le psychologue : comment ça se passe ?"
+title: "La première séance chez le psychologue"
 description: "Ce qui se passe concrètement lors d'un premier rendez-vous en psychologie : le déroulé, ce qu'on y dit, la durée, le tarif et la suite."
 draft: false
 updatedAt: "2026-09-14"

@@ -21,12 +21,6 @@ export const CONDITIONS_LIMITS_ITEMS: readonly string[] = [
   "En cas d'urgence immédiate, contactez le 15 (SAMU) ou le 112.",
 ];
 
-/**
- * Identifiant du formulaire Formspree (`https://formspree.io/f/<id>`).
- * Renseigné par l’intégrateur dans le code, pas dans client.json.
- */
-export const FORMSPREE_FORM_ID = "mlgpkqvl";
-
 /** Libellés et liens CTA pied de page (stack fixe : RDV externe + contact). */
 export const SITE_BOOKING_PRIMARY_LABEL = "Prendre rendez-vous";
 export const SITE_BOOKING_PRIMARY_HREF = "https://www.doctolib.fr/";

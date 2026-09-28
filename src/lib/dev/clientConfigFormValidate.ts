@@ -1,6 +1,5 @@
 import { ClientMigrationError, migrateClientConfig } from "../client/migrations.ts";
 import { ClientSchema, type ClientConfig } from "../client/schema.ts";
-import { FORMSPREE_FORM_ID } from "../constants.ts";
 import { PRACTICE_OFFER_FORM_FAMILIES } from "../practiceOfferFormFamilies.ts";
 import { REGISTERED_PRACTICE_PAGES } from "../practicePageRegistry.ts";
 import { deepClone } from "./clientConfigFormUtils.ts";
@@ -80,21 +79,6 @@ export function validateClientJsonRaw(raw: unknown): ValidateResult {
     const parsed = ClientSchema.safeParse(migrated);
     if (!parsed.success) {
       return { ok: false, issues: enrichClientValidationIssues(formatIssues(parsed.error.issues)) };
-    }
-    if (
-      parsed.data.contact.channels.selected.includes("form") &&
-      FORMSPREE_FORM_ID.trim().length === 0
-    ) {
-      return {
-        ok: false,
-        issues: enrichClientValidationIssues([
-          {
-            path: "contact.channels.selected",
-            message:
-              "Formulaire de contact sélectionné : renseignez FORMSPREE_FORM_ID dans src/lib/constants.ts (côté intégrateur).",
-          },
-        ]),
-      };
     }
     return { ok: true, data: parsed.data };
   } catch (e) {

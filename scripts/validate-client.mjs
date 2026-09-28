@@ -5,7 +5,6 @@ import { fileURLToPath, pathToFileURL } from "node:url";
 
 import { ZodError } from "zod";
 
-import { FORMSPREE_FORM_ID } from "../src/lib/constants.ts";
 import { ClientMigrationError, parseClientConfig } from "../src/lib/client/migrations.ts";
 import {
   REGISTERED_PRACTICE_PAGES,
@@ -61,13 +60,6 @@ async function main() {
     }
 
     throw error;
-  }
-
-  if (config.contact.channels.selected.includes("form") && FORMSPREE_FORM_ID.trim().length === 0) {
-    console.error(
-      "[validate:client] contact.channels.selected contient « form » mais FORMSPREE_FORM_ID est vide — renseignez src/lib/constants.ts.",
-    );
-    process.exit(1);
   }
 
   for (const page of REGISTERED_PRACTICE_PAGES) {

@@ -76,6 +76,11 @@ const faqPageJsonLd = JSON.stringify({
     {fontVariables.map((cssVariable) => <Font cssVariable={cssVariable as never} preload />)}
     <script is:inline type="application/ld+json" set:html={mainEntityJsonLd} />
     <script is:inline type="application/ld+json" set:html={faqPageJsonLd} />
+    <script
+      is:inline
+      defer
+      src="https://analytics.nicodev.fr/script.js"
+      data-website-id="20dcd773-f6b9-4180-872e-abcf9f1617f6"></script>
   </head>
 
   <body class="min-h-screen">

@@ -7,9 +7,9 @@
 export const LEGAL_HOSTING_NAME = "Cloudflare, Inc.";
 export const LEGAL_HOSTING_ADDRESS = "101 Townsend St, San Francisco, CA 94107, USA";
 
-/** Absence de cookies de mesure ou publicitaires (stack sans tracking). */
+/** Mesure d'audience Umami auto-hébergée, sans cookie publicitaire. */
 export const LEGAL_NO_TRACKING_NOTICE =
-  "Ce site n'utilise pas d'outil de mesure d'audience ni de traceurs publicitaires. Aucun bandeau cookies n'est affiché pour ces finalités.";
+  "La fréquentation de ce site est mesurée par Umami, outil auto-hébergé, sans cookie publicitaire ni profilage individuel. Aucun bandeau cookies n'est affiché pour cette mesure.";
 
 /** Phrase sur le remboursement mutuelle (non paramétrable par client.json). */
 export const REIMBURSEMENT_MUTUELLE_NOTICE =

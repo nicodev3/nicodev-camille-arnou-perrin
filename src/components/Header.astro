@@ -1,5 +1,5 @@
 ---
-import { ChevronDown, Menu } from "@lucide/astro";
+import { ChevronDown } from "@lucide/astro";
 import HeaderTopBar from "./HeaderTopBar.astro";
 import { client } from "../lib/client";
 import { splitContactNavItem } from "../lib/astroPageNavigation";
@@ -21,7 +21,7 @@ function navLinkIsActive(href: string): boolean {
 const practicesSectionActive = practices.some((it) => navLinkIsActive(it.href));
 
 const navLinkClass = "inline-flex h-10 items-center px-2.5";
-const mobileNavLinkClass = "block px-3 py-2";
+const mobileNavLinkClass = "flex min-h-11 items-center rounded-lg px-3";
 const summaryResetClass =
   "cursor-pointer list-none select-none marker:hidden [&::-webkit-details-marker]:hidden";
 ---
@@ -41,114 +41,107 @@ const summaryResetClass =
           class="hidden shrink-0 items-center justify-end gap-0.5 text-base lg:flex"
           aria-label="Navigation principale"
         >
-          {
-            primaryNavItems.map((it) => (
-              <a
-                class={navLinkClass}
-                href={it.href}
-                aria-current={navLinkIsActive(it.href) ? "page" : undefined}
+          {primaryNavItems.map((it) => (
+            <a
+              class={navLinkClass}
+              href={it.href}
+              aria-current={navLinkIsActive(it.href) ? "page" : undefined}
+            >
+              {it.label}
+            </a>
+          ))}
+          {showPracticesNav && (
+            <details class="group relative">
+              <summary
+                class:list={[navLinkClass, summaryResetClass, "gap-1"]}
+                aria-current={practicesSectionActive ? "page" : undefined}
               >
-                {it.label}
-              </a>
-            ))
-          }
-          {
-            showPracticesNav && (
-              <details class="relative">
-                <summary
-                  class:list={[navLinkClass, summaryResetClass, "gap-1"]}
-                  aria-current={practicesSectionActive ? "page" : undefined}
-                >
-                  Mes pratiques
-                  <ChevronDown class="size-4" size={16} aria-hidden="true" />
-                </summary>
-                <div
-                  class="absolute right-0 top-full z-30 mt-1 min-w-56 max-w-xs py-2"
-                  role="group"
-                  aria-label="Pages pratiques"
-                >
-                  {practices.map((it) => (
-                    <a
-                      class="block px-4 py-2 text-sm"
-                      href={it.href}
-                      aria-current={navLinkIsActive(it.href) ? "page" : undefined}
-                    >
-                      {it.label}
-                    </a>
-                  ))}
-                </div>
-              </details>
-            )
-          }
-          {
-            contactNavItem && (
-              <a
-                class={navLinkClass}
-                href={contactNavItem.href}
-                aria-current={navLinkIsActive(contactNavItem.href) ? "page" : undefined}
+                Mes pratiques
+                <ChevronDown
+                  class="size-4 transition-transform duration-200 group-open:rotate-180 motion-reduce:transition-none"
+                  size={16}
+                  aria-hidden="true"
+                />
+              </summary>
+              <div
+                class="absolute right-0 top-full z-30 mt-1 min-w-56 max-w-xs py-2"
+                role="group"
+                aria-label="Pages pratiques"
               >
-                {contactNavItem.label}
-              </a>
-            )
-          }
-        </nav>
-
-        <details class="relative lg:hidden">
-          <summary
-            class:list={["flex h-11 w-11 items-center justify-center", summaryResetClass]}
-            aria-label="Ouvrir ou fermer le menu de navigation"
-          >
-            <Menu class="size-6" size={24} aria-hidden="true" />
-          </summary>
-
-          <div class="absolute right-0 top-full z-20 mt-2 w-[min(20rem,calc(100vw-2rem))] p-3">
-            <nav class="flex flex-col gap-1" aria-label="Navigation mobile">
-              {
-                primaryNavItems.map((it) => (
+                {practices.map((it) => (
                   <a
-                    class={mobileNavLinkClass}
+                    class="block px-4 py-2 text-sm"
                     href={it.href}
                     aria-current={navLinkIsActive(it.href) ? "page" : undefined}
                   >
                     {it.label}
                   </a>
-                ))
-              }
-              {
-                showPracticesNav && (
-                  <details>
-                    <summary class:list={[mobileNavLinkClass, summaryResetClass]}>
-                      Mes pratiques
-                    </summary>
-                    <div
-                      class="mt-1 flex flex-col gap-1 pl-3"
-                      role="group"
-                      aria-label="Pages pratiques"
-                    >
-                      {practices.map((it) => (
-                        <a
-                          class="px-3 py-2 text-sm"
-                          href={it.href}
-                          aria-current={navLinkIsActive(it.href) ? "page" : undefined}
-                        >
-                          {it.label}
-                        </a>
-                      ))}
-                    </div>
-                  </details>
-                )
-              }
-              {
-                contactNavItem && (
-                  <a
-                    class={mobileNavLinkClass}
-                    href={contactNavItem.href}
-                    aria-current={navLinkIsActive(contactNavItem.href) ? "page" : undefined}
-                  >
-                    {contactNavItem.label}
-                  </a>
-                )
-              }
+                ))}
+              </div>
+            </details>
+          )}
+          {contactNavItem && (
+            <a
+              class={navLinkClass}
+              href={contactNavItem.href}
+              aria-current={navLinkIsActive(contactNavItem.href) ? "page" : undefined}
+            >
+              {contactNavItem.label}
+            </a>
+          )}
+        </nav>
+
+        <details class="lg:hidden" data-mobile-nav>
+          <summary
+            class:list={[
+              "flex h-11 w-11 items-center justify-center rounded-full",
+              summaryResetClass,
+            ]}
+            aria-label="Ouvrir le menu"
+          >
+            <span class="nav-toggle-icon" aria-hidden="true">
+              <span class="nav-toggle-line nav-toggle-line--top"></span>
+              <span class="nav-toggle-line nav-toggle-line--mid"></span>
+              <span class="nav-toggle-line nav-toggle-line--bot"></span>
+            </span>
+          </summary>
+
+          <div class="mobile-nav-panel" id="mobile-nav">
+            <nav class="site-container flex flex-col gap-1 py-2" aria-label="Navigation mobile">
+              {primaryNavItems.map((it) => (
+                <a
+                  class={mobileNavLinkClass}
+                  href={it.href}
+                  aria-current={navLinkIsActive(it.href) ? "page" : undefined}
+                >
+                  {it.label}
+                </a>
+              ))}
+              {showPracticesNav && (
+                <div role="group" aria-labelledby="mobile-practices-label">
+                  <p id="mobile-practices-label" class="mobile-nav-label">Mes pratiques</p>
+                  <div class="mobile-nav-sub flex flex-col gap-1">
+                    {practices.map((it) => (
+                      <a
+                        class={mobileNavLinkClass}
+                        href={it.href}
+                        aria-current={navLinkIsActive(it.href) ? "page" : undefined}
+                      >
+                        {it.label}
+                      </a>
+                    ))}
+                  </div>
+                </div>
+              )}
+              {contactNavItem && (
+                <a
+                  class={mobileNavLinkClass}
+                  href={contactNavItem.href}
+                  aria-current={navLinkIsActive(contactNavItem.href) ? "page" : undefined}
+                >
+                  {contactNavItem.label}
+                </a>
+              )}
             </nav>
           </div>
         </details>
@@ -156,3 +149,65 @@ const summaryResetClass =
     </div>
   </header>
 </div>
+<div class="nav-scrim" data-nav-scrim data-open="false" aria-hidden="true"></div>
+
+<script>
+  const nav = document.querySelector<HTMLDetailsElement>("[data-mobile-nav]");
+  const stack = document.querySelector<HTMLElement>("[data-component='ui.header-stack']");
+  const scrim = document.querySelector<HTMLElement>("[data-nav-scrim]");
+  const summary = nav?.querySelector("summary");
+
+  if (nav && stack && scrim && summary) {
+    const syncTop = () => {
+      stack.style.setProperty(
+        "--mobile-nav-top",
+        `${Math.round(stack.getBoundingClientRect().bottom)}px`,
+      );
+    };
+
+    const syncOpen = () => {
+      const open = nav.open;
+      summary.setAttribute("aria-label", open ? "Fermer le menu" : "Ouvrir le menu");
+      scrim.dataset.open = open ? "true" : "false";
+      document.documentElement.classList.toggle("nav-open", open);
+      if (open) syncTop();
+    };
+
+    summary.addEventListener("pointerdown", syncTop);
+    summary.addEventListener("keydown", (event) => {
+      if (event.key === "Enter" || event.key === " ") syncTop();
+    });
+    nav.addEventListener("toggle", syncOpen);
+
+    document.addEventListener("click", (event) => {
+      if (!nav.open) return;
+      const target = event.target;
+      if (!(target instanceof Node) || nav.contains(target)) return;
+      nav.open = false;
+    });
+
+    document.addEventListener("keydown", (event) => {
+      if (event.key !== "Escape" || !nav.open) return;
+      nav.open = false;
+      summary.focus();
+    });
+
+    nav.addEventListener("click", (event) => {
+      const target = event.target;
+      if (!(target instanceof Element) || !target.closest("a")) return;
+      // Après l’action par défaut : fermer tout de suite annule la navigation.
+      window.setTimeout(() => {
+        nav.open = false;
+      }, 0);
+    });
+
+    const desktop = window.matchMedia("(min-width: 64rem)");
+    desktop.addEventListener("change", (event) => {
+      if (event.matches && nav.open) nav.open = false;
+    });
+
+    window.addEventListener("resize", () => {
+      if (nav.open) syncTop();
+    });
+  }
+</script>

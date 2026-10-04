@@ -7,7 +7,10 @@ export const GET: APIRoute = ({ site }) => {
     ? ["User-agent: *", "Disallow: /"]
     : [
         "User-agent: *",
+        "Allow: /",
+        "Content-Signal: ai-train=no, search=yes, ai-input=yes",
         ...NON_INDEXABLE_PATHS.map((path) => `Disallow: ${path}`),
+        "",
         `Sitemap: ${new URL("sitemap-index.xml", site)}`,
       ];
 

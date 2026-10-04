@@ -4,6 +4,10 @@ import sitemap from "@astrojs/sitemap";
 import tailwindcss from "@tailwindcss/vite";
 import client from "./src/data/client.json" with { type: "json" };
 import { siteFonts } from "./src/design/fonts.mjs"; // Stitch : Plus Jakarta Sans + Newsreader
+import llmsMd, {
+  SITE_LLMS_DESCRIPTION,
+  SITE_LLMS_NAME,
+} from "./src/integrations/llms-md.mjs";
 
 /** Pages techniques, jamais indexées (sitemap + robots.txt). */
 export const NON_INDEXABLE_PATHS = ["/admin/", "/client-config/"];
@@ -15,6 +19,12 @@ export default defineConfig({
   integrations: [
     sitemap({
       filter: (page) => !NON_INDEXABLE_PATHS.some((path) => page.includes(path)),
+    }),
+    // Parcours fs local : ne pas utiliser llms() (glob Windows → llms.txt vides).
+    llmsMd({
+      siteUrl: client.seo.baseUrl,
+      name: SITE_LLMS_NAME,
+      description: SITE_LLMS_DESCRIPTION,
     }),
   ],
   env: {

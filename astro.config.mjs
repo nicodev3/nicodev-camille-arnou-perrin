@@ -8,9 +8,7 @@ import llmsMd, {
   SITE_LLMS_DESCRIPTION,
   SITE_LLMS_NAME,
 } from "./src/integrations/llms-md.mjs";
-
-/** Pages techniques, jamais indexées (sitemap + robots.txt). */
-export const NON_INDEXABLE_PATHS = ["/admin/", "/client-config/"];
+import { NON_INDEXABLE_PATHS } from "./src/lib/non-indexable-paths.mjs";
 
 // https://astro.build/config
 export default defineConfig({

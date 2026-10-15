@@ -3,11 +3,11 @@ import "../styles/global.css";
 import "../styles/stitch.css";
 import { Font } from "astro:assets";
 import { PUBLIC_NOINDEX } from "astro:env/client";
-import { siteFonts } from "../design/fonts.mjs";
+import { siteFontCssVariables } from "../design/font-css-variables.mjs";
 import { client } from "../lib/client";
 import { resolvedFaqEntries } from "../lib/client/faqPresets.ts";
 import { professionMainEntityJsonLdType } from "../lib/client/professionCopy.ts";
-import { businessStreetLines } from "../lib/client/businessAddress";
+import { businessAreaLocalities, businessStreetLines } from "../lib/client/businessAddress";
 import Footer from "../components/Footer.astro";
 
 interface Props {
@@ -19,7 +19,7 @@ const { title = client.seo.siteName, description = client.seo.description } = As
 
 const pageUrl = new URL(Astro.url.pathname, Astro.site);
 const mainEntityLdType = professionMainEntityJsonLdType(client.profession);
-const fontVariables = (siteFonts ?? []).map((font) => font.cssVariable);
+const fontVariables = Object.values(siteFontCssVariables);
 
 const mainEntityJsonLd = JSON.stringify({
   "@context": "https://schema.org",
@@ -37,6 +37,11 @@ const mainEntityJsonLd = JSON.stringify({
     addressLocality: client.business.city,
     addressCountry: "FR",
   },
+  /** Communes desservies (référencement local) : « Versailles, Le Chesnay » → deux entrées. */
+  areaServed: businessAreaLocalities(client.business).map((locality) => ({
+    "@type": "City",
+    name: locality,
+  })),
 });
 
 const faqPageJsonLd = JSON.stringify({
@@ -58,7 +63,9 @@ const faqPageJsonLd = JSON.stringify({
     <meta name="description" content={description} />
     {PUBLIC_NOINDEX && <meta name="robots" content="noindex, nofollow" />}
     <link rel="canonical" href={pageUrl} />
+    <link rel="icon" href="/favicon.ico" sizes="32x32" />
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
     <link rel="sitemap" href="/sitemap-index.xml" />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
@@ -69,6 +76,11 @@ const faqPageJsonLd = JSON.stringify({
     {fontVariables.map((cssVariable) => <Font cssVariable={cssVariable as never} preload />)}
     <script is:inline type="application/ld+json" set:html={mainEntityJsonLd} />
     <script is:inline type="application/ld+json" set:html={faqPageJsonLd} />
+    <script
+      is:inline
+      defer
+      src="https://analytics.nicodev.fr/script.js"
+      data-website-id="20dcd773-f6b9-4180-872e-abcf9f1617f6"></script>
   </head>
 
   <body class="min-h-screen">

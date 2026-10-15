@@ -1,0 +1,60 @@
+---
+import { Users } from "@lucide/astro";
+import { client } from "../lib/client";
+
+interface Props {
+  /** Niveau de titre selon le contexte d'insertion (page ou section d'accueil). */
+  headingLevel?: 2 | 3;
+  class?: string;
+}
+
+const { headingLevel = 2, class: className } = Astro.props;
+const Heading = `h${headingLevel}` as "h2" | "h3";
+
+const supervision = client.practice.supervision;
+const enabled = supervision.enabled;
+const name = supervision.name?.trim() ?? "";
+const provider = supervision.provider?.trim() ?? "";
+const title = name ? `Supervision — ${name}` : "Supervision";
+const priceLabel =
+  supervision.price === undefined
+    ? ""
+    : [`${supervision.price} €`, supervision.priceNote?.trim()].filter(Boolean).join(" ");
+---
+
+{
+  enabled && (
+    <section
+      class:list={["page-block", className]}
+      data-component="supervision.block"
+      aria-label={title}
+    >
+      <Heading>{title}</Heading>
+      {provider && (
+        <p class="note" data-component="supervision.provider">
+          <Users class="size-4 shrink-0" size={16} aria-hidden="true" />
+          Groupe animé dans le cadre de {provider}
+        </p>
+      )}
+      {supervision.description && <p>{supervision.description}</p>}
+      {supervision.schedule && <p>{supervision.schedule}</p>}
+      {priceLabel && (
+        <p data-component="supervision.price">
+          <strong>{priceLabel}</strong>
+        </p>
+      )}
+      {supervision.url && (
+        <p>
+          <a
+            href={supervision.url}
+            class="cta-secondary cta-secondary--sm"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            En savoir plus sur {name || "le groupe de supervision"}
+          </a>
+        </p>
+      )}
+    </section>
+  )
+}

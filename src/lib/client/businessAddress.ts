@@ -13,3 +13,19 @@ export function businessStreetLines(b: Business): string[] {
 export function businessAddressText(b: Business): string {
   return `${businessStreetLines(b).join(", ")}, ${b.postalCode} ${b.city}`;
 }
+
+/**
+ * Secteur affiché hors adresse postale (hero, pied de page, référencement) :
+ * `areaLabel` quand le cabinet rayonne au-delà de la commune, sinon la ville.
+ */
+export function businessAreaLabel(b: Business): string {
+  return b.areaLabel?.trim() || b.city;
+}
+
+/** Communes du secteur, pour `areaServed` (JSON-LD) : « Versailles, Le Chesnay » → 2 entrées. */
+export function businessAreaLocalities(b: Business): string[] {
+  return businessAreaLabel(b)
+    .split(",")
+    .map((part) => part.trim())
+    .filter(Boolean);
+}

@@ -1,0 +1,117 @@
+---
+import { CalendarDays, ExternalLink, Sparkles, Users } from "@lucide/astro";
+import { client } from "../../lib/client";
+import { heroConsultationTaglineAfterPour } from "../../lib/client/heroConsultationTagline";
+import { professionHeroConsultationPrefix } from "../../lib/client/professionCopy.ts";
+import {
+  bookingPrimaryIsExternal,
+  resolvedBookingPrimaryHref,
+  SITE_BOOKING_PRIMARY_LABEL,
+} from "../../lib/client/siteBooking";
+
+const supervision = client.practice.supervision;
+const project = client.practice.project;
+
+const consultationsText = `${professionHeroConsultationPrefix(client.profession)}${heroConsultationTaglineAfterPour(client.practice)}`;
+const bookingHref = resolvedBookingPrimaryHref(client);
+const bookingExternal = bookingPrimaryIsExternal(bookingHref);
+
+const supervisionTitle = supervision.name ? `Supervision — ${supervision.name}` : "Supervision";
+const supervisionPrice =
+  supervision.price === undefined
+    ? ""
+    : [`${supervision.price} €`, supervision.priceNote?.trim()].filter(Boolean).join(" ");
+const supervisionSummary = [
+  supervision.provider ? `Groupe animé dans le cadre de ${supervision.provider}.` : "",
+  supervision.schedule ?? "",
+]
+  .map((part) => part.trim())
+  .filter(Boolean)
+  .join(" ");
+
+const projectName = project.name?.trim() ?? "";
+const projectCtaLabel = project.ctaLabel?.trim() || `Découvrir ${projectName || "le projet"}`;
+/** Carte d'offre : résumé court ; la présentation longue vit sur la page « À propos ». */
+const projectSummary = project.summary?.trim() || project.description?.trim() || "";
+---
+
+<section class="space-y-6" data-component="section.offer" aria-label="Ce que je propose">
+  <h2>Ce que je propose</h2>
+  <ul data-component="offer.list">
+    <li data-component="offer.item">
+      <h3>
+        <CalendarDays class="size-5 shrink-0" size={20} aria-hidden="true" />
+        Consultations individuelles
+      </h3>
+      <p>{consultationsText}</p>
+      <p class="offer-links">
+        <a
+          href={bookingHref}
+          class="cta-secondary cta-secondary--sm"
+          {...bookingExternal ? { target: "_blank", rel: "noopener noreferrer" } : {}}
+        >
+          {SITE_BOOKING_PRIMARY_LABEL}
+        </a>
+        <a href="/tarifs/" class="offer-link">Voir les tarifs</a>
+      </p>
+    </li>
+
+    {
+      supervision.enabled && (
+        <li data-component="offer.item">
+          <h3>
+            <Users class="size-5 shrink-0" size={20} aria-hidden="true" />
+            {supervisionTitle}
+          </h3>
+          {supervisionSummary && <p>{supervisionSummary}</p>}
+          {supervisionPrice && (
+            <p data-component="offer.price">
+              <strong>{supervisionPrice}</strong>
+            </p>
+          )}
+          <p class="offer-links">
+            {supervision.url && (
+              <a
+                href={supervision.url}
+                class="cta-secondary cta-secondary--sm"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                En savoir plus
+              </a>
+            )}
+            <a href="/tarifs/" class="offer-link">
+              Voir les tarifs
+            </a>
+          </p>
+        </li>
+      )
+    }
+
+    {
+      project.enabled && projectName && (
+        <li data-component="offer.item">
+          <h3>
+            <Sparkles class="size-5 shrink-0" size={20} aria-hidden="true" />
+            {projectName}
+          </h3>
+          {project.tagline && <p class="note">{project.tagline}</p>}
+          {projectSummary && <p>{projectSummary}</p>}
+          {project.url && (
+            <p class="offer-links">
+              <a
+                href={project.url}
+                class="cta-secondary cta-secondary--sm"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <ExternalLink class="size-4 shrink-0" size={16} aria-hidden="true" />
+                {projectCtaLabel}
+              </a>
+            </p>
+          )}
+        </li>
+      )
+    }
+  </ul>
+</section>

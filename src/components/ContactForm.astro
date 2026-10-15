@@ -1,41 +1,29 @@
----
-import { FORMSPREE_FORM_ID } from "../lib/constants";
-import { client } from "../lib/client";
-
-const nextUrl = `${client.seo.baseUrl.replace(/\/+$/, "")}/contact/?sent=1`;
-const action = `https://formspree.io/f/${FORMSPREE_FORM_ID}`;
-const sent = Astro.url.searchParams.get("sent") === "1";
----
-
 <section
   id="ecrire"
   class="page-block"
   aria-labelledby="contact-form-heading"
   data-component="contact.form"
 >
+  <p class="note">Écrire au cabinet</p>
   <h2 id="contact-form-heading">Envoyer un message</h2>
-  <p class="note">
-    Une réponse vous est apportée rapidement, généralement sous 24 à 48 heures ouvrées.
+  <p>Une réponse vous est apportée rapidement, généralement sous 24 à 48 heures ouvrées.</p>
+
+  <p id="contact-sent" hidden role="status">
+    Merci : votre message a bien été envoyé.
   </p>
-
-  {
-    sent && (
-      <p role="status" aria-live="polite">
-        Merci : votre message a bien été envoyé.
-      </p>
-    )
-  }
-
+  <p id="contact-error" hidden role="alert">
+    L’envoi n’a pas abouti. Réessayez dans un instant, ou écrivez directement par e-mail.
+  </p>
+  <script is:inline>
+    const sent = new URLSearchParams(location.search).get("sent");
+    const status = document.getElementById(
+      sent === "1" ? "contact-sent" : sent === "0" ? "contact-error" : "",
+    );
+    if (status) status.hidden = false;
+  </script>
   <p class="note">Les champs marqués d’un * sont obligatoires.</p>
 
-  <form class="space-y-4" method="POST" action={action}>
-    <input type="hidden" name="_next" value={nextUrl} />
-    <input
-      type="hidden"
-      name="_subject"
-      value={`Message depuis le site — ${client.seo.siteName}`}
-    />
-
+  <form class="space-y-5" method="POST" action="/api/contact">
     <p class="sr-only" aria-hidden="true">
       <label>
         Ne pas remplir ce champ
@@ -87,14 +75,17 @@ const sent = Astro.url.searchParams.get("sent") === "1";
         name="message"
         required
         aria-describedby="contact-privacy"
-        rows={5}
-        class="form-field"></textarea>
+        rows={6}
+        class="form-field"
+      ></textarea>
     </div>
 
     <p id="contact-privacy" class="note">
       Les informations saisies servent à répondre à votre demande. Évitez de transmettre des
       informations médicales sensibles.
     </p>
-    <button type="submit" class="cta-primary"> Envoyer le message </button>
+    <button type="submit" class="cta-primary">
+      Envoyer le message
+    </button>
   </form>
 </section>

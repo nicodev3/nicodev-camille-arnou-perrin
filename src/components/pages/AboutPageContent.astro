@@ -1,9 +1,14 @@
 ---
 import CredentialsPanel from "../CredentialsPanel.astro";
 import PractitionerPortrait from "../PractitionerPortrait.astro";
+import ProjectSection from "../ProjectSection.astro";
 import { client } from "../../lib/client";
 
 const sidebarSummary = client.aboutPage.sidebarSummary ?? "";
+const introParagraphs = client.aboutPage.intro
+  .split(/\n{2,}/)
+  .map((paragraph) => paragraph.trim())
+  .filter(Boolean);
 ---
 
 <header
@@ -14,8 +19,10 @@ const sidebarSummary = client.aboutPage.sidebarSummary ?? "";
   <div class="min-w-0 flex-1 space-y-2">
     <h1>{client.business.fullName}</h1>
     {sidebarSummary && <p class="note">{sidebarSummary}</p>}
-    <p class="lead">{client.aboutPage.intro}</p>
+    {introParagraphs.map((paragraph) => <p class="lead">{paragraph}</p>)}
   </div>
 </header>
+
+<ProjectSection class="my-10" headingLevel={2} />
 
 <CredentialsPanel />

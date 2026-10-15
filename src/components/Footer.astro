@@ -5,7 +5,7 @@ import { buildFooterSiteMapItems } from "../lib/footerSiteMap";
 import { getSiteNavigation } from "../lib/siteNavigation";
 import { client } from "../lib/client";
 import { professionDeontologieFooterLink } from "../lib/client/professionCopy.ts";
-import { businessStreetLines } from "../lib/client/businessAddress";
+import { businessAreaLabel, businessStreetLines } from "../lib/client/businessAddress";
 import {
   bookingPrimaryIsExternal,
   resolvedBookingPrimaryHref,
@@ -14,6 +14,7 @@ import {
 import { SITE_BOOKING_SECONDARY_HREF, SITE_BOOKING_SECONDARY_LABEL } from "../lib/constants";
 
 const b = client.business;
+const areaLabel = businessAreaLabel(b);
 const license = client.credentials.license;
 const registrationLabel = license.registrationLabel === "rpps" ? "RPPS" : "ADELI";
 const bookingHref = resolvedBookingPrimaryHref(client);
@@ -38,7 +39,7 @@ const deontologie = professionDeontologieFooterLink(client.profession);
     <div class="site-container mb-8 grid grid-cols-1 gap-6 md:grid-cols-3">
       <address class="space-y-1 not-italic" data-component="footer.contact">
         <p class="text-base leading-relaxed">{b.fullName}</p>
-        <p class="text-sm leading-relaxed">{b.title} • {b.city}</p>
+        <p class="text-sm leading-relaxed">{b.title} • {areaLabel}</p>
         <p class="text-sm leading-relaxed">
           {
             businessStreetLines(b).map((line) => (

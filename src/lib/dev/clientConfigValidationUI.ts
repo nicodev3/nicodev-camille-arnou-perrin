@@ -289,10 +289,7 @@ export function humanizeClientZodMessage(raw: string, path: string): string {
   if (path.endsWith(".value") && m.includes("required")) {
     return "Renseignez les horaires pour ce jour ou décochez-le.";
   }
-  if (
-    path === "contact.channels.selected" ||
-    (path.includes("FORMSPREE") && m.includes("intégrateur"))
-  ) {
+  if (path === "contact.channels.selected") {
     return m;
   }
 

@@ -14,9 +14,13 @@ interface Props {
 }
 
 const { title, description = "", intro = description, hidePageHeader = false } = Astro.props;
+
+/** Nom court pour le <title> (évite de dépasser ~60 caractères en SERP). */
+const titleBrand =
+  client.seo.siteName.split(/\s*[—–]\s*/)[0]?.trim() || client.business.fullName;
 ---
 
-<BaseLayout title={`${title} — ${client.seo.siteName}`} description={description}>
+<BaseLayout title={`${title} | ${titleBrand}`} description={description}>
   <Header />
   <Breadcrumb currentLabel={title} />
 

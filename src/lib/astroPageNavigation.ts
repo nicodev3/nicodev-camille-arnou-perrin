@@ -13,6 +13,11 @@ type AstroPageModule = {
 
 const CONTACT_HREF = "/contact/";
 
+/** Ordre du menu : `order` croissant, puis libellé (alphabétique fr). */
+export function sortNavLinks<T extends SiteNavLink>(items: T[]): T[] {
+  return [...items].sort((a, b) => a.order - b.order || a.label.localeCompare(b.label, "fr"));
+}
+
 /** Sépare le lien Contact pour le placer après d’autres blocs (ex. menu « Mes pratiques »). */
 export function splitContactNavItem<T extends { href: string }>(
   items: T[],
@@ -46,5 +51,5 @@ export async function getAstroMainPages(): Promise<SiteNavLink[]> {
     ];
   });
 
-  return items.sort((a, b) => a.order - b.order || a.label.localeCompare(b.label, "fr"));
+  return sortNavLinks(items);
 }

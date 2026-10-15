@@ -3,11 +3,17 @@ import { enabledContactHoursRows } from "../lib/client/contactHours";
 import { client } from "../lib/client";
 
 const hoursRows = enabledContactHoursRows(client.contact.hours);
+const hoursNote = client.contact.hoursNote ?? "";
+const hoursNoteLines = hoursNote
+  .split("\n")
+  .map((line) => line.trim())
+  .filter(Boolean);
 ---
 
 {
   hoursRows.length > 0 && (
     <div data-component="contact.hours-block">
+      <p class="note">Sur rendez-vous</p>
       <h2>Horaires</h2>
       <table>
         <tbody>
@@ -19,6 +25,13 @@ const hoursRows = enabledContactHoursRows(client.contact.hours);
           ))}
         </tbody>
       </table>
+      {hoursNoteLines.length > 0 && (
+        <div data-component="contact.hours-note">
+          {hoursNoteLines.map((line) => (
+            <p>{line}</p>
+          ))}
+        </div>
+      )}
     </div>
   )
 }

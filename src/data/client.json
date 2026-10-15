@@ -152,10 +152,10 @@
     }
   },
   "seo": {
-    "siteName": "Cabinet de psychologie de Pierre Jeanet",
+    "siteName": "Cabinet de psychologie de Camille Perrin",
     "description": "Psychologue pour adultes et adolescents à partir de 16 ans, au Chesnay. Accompagnement de l'anxiété, du stress, des addictions, des traumatismes et des troubles de l'humeur, au cabinet et en visio.",
-    "baseUrl": "https://exemple.fr",
-    "ogImage": "https://exemple.fr/og.jpg"
+    "baseUrl": "https://camille-perrin-psychologue.fr",
+    "ogImage": "https://camille-perrin-psychologue.fr/og.jpg"
   },
   "practicePageEnabled": {
     "tcc": false,

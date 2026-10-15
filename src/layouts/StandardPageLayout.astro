@@ -20,7 +20,7 @@ const { title, description = "", intro = description, hidePageHeader = false } =
   <Header />
   <Breadcrumb currentLabel={title} />
 
-  <main class="site-container page" data-component="page">
+  <main id="contenu" tabindex="-1" class="site-container page" data-component="page">
     {
       !hidePageHeader && (
         <header class:list={["page-header", Astro.slots.has("actions") && "page-header--actions"]}>

@@ -26,6 +26,8 @@ const sent = Astro.url.searchParams.get("sent") === "1";
     )
   }
 
+  <p class="note">Les champs marqués d’un * sont obligatoires.</p>
+
   <form class="space-y-4" method="POST" action={action}>
     <input type="hidden" name="_next" value={nextUrl} />
     <input
@@ -72,7 +74,7 @@ const sent = Astro.url.searchParams.get("sent") === "1";
     </div>
 
     <div>
-      <label for="contact-phone">Téléphone</label>
+      <label for="contact-phone">Téléphone (facultatif)</label>
       <input id="contact-phone" name="phone" type="tel" autocomplete="tel" class="form-field" />
     </div>
 
@@ -80,11 +82,19 @@ const sent = Astro.url.searchParams.get("sent") === "1";
       <label for="contact-message">
         Message <span aria-hidden="true">*</span>
       </label>
-      <textarea id="contact-message" name="message" required rows={5} class="form-field"></textarea>
-      <p class="note">Les champs marqués d’un * sont obligatoires.</p>
+      <textarea
+        id="contact-message"
+        name="message"
+        required
+        aria-describedby="contact-privacy"
+        rows={5}
+        class="form-field"></textarea>
     </div>
 
-    <p class="note">Vos informations restent confidentielles et ne sont jamais partagées.</p>
+    <p id="contact-privacy" class="note">
+      Les informations saisies servent à répondre à votre demande. Évitez de transmettre des
+      informations médicales sensibles.
+    </p>
     <button type="submit" class="cta-primary"> Envoyer le message </button>
   </form>
 </section>

@@ -7,13 +7,14 @@
  */
 import { fontProviders } from "astro/config";
 
+/** @satisfies {NonNullable<import("astro").AstroUserConfig["fonts"]>} */
 export const siteFonts = [
   {
     provider: fontProviders.google(),
     name: "Plus Jakarta Sans",
     cssVariable: "--font-jakarta",
-    weights: [300, 400, 500, 600],
-    styles: ["normal"],
+    weights: [400, 500, 600],
+    styles: ["normal", "italic"],
     subsets: ["latin"],
     fallbacks: ["sans-serif"],
   },

@@ -41,7 +41,7 @@ const summaryResetClass =
         </a>
 
         <nav
-          class="hidden max-w-[62vw] flex-wrap items-center justify-end gap-1 text-base md:flex"
+          class="hidden max-w-[65vw] flex-wrap items-center justify-end gap-1 text-base lg:flex"
           aria-label="Navigation principale"
         >
           {
@@ -96,7 +96,7 @@ const summaryResetClass =
           }
         </nav>
 
-        <details class="relative md:hidden">
+        <details class="relative lg:hidden">
           <summary
             class:list={["flex h-11 w-11 items-center justify-center", summaryResetClass]}
             aria-label="Ouvrir ou fermer le menu de navigation"
@@ -159,3 +159,33 @@ const summaryResetClass =
     </div>
   </header>
 </div>
+
+<script>
+  const header = document.querySelector('[data-component="ui.header-stack"]');
+  if (header) {
+    const menus = Array.from(header.querySelectorAll("details"));
+    header.addEventListener("keydown", (event) => {
+      if (!(event instanceof KeyboardEvent) || event.key !== "Escape") return;
+      const target = event.target;
+      const menu = target instanceof Element ? target.closest("details[open]") : null;
+      if (menu instanceof HTMLDetailsElement) {
+        menu.open = false;
+        menu.querySelector("summary")?.focus();
+        event.preventDefault();
+        event.stopPropagation();
+      }
+    });
+    document.addEventListener("click", (event) => {
+      if (!(event.target instanceof Node)) return;
+      for (const menu of menus) if (!menu.contains(event.target)) menu.open = false;
+    });
+    const updateHeaderHeight = () => {
+      document.documentElement.style.setProperty(
+        "--header-height",
+        header.getBoundingClientRect().height + "px",
+      );
+    };
+    new ResizeObserver(updateHeaderHeight).observe(header);
+    updateHeaderHeight();
+  }
+</script>

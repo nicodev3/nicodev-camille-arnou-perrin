@@ -1,4 +1,5 @@
 ---
+import { ChevronDown } from "@lucide/astro";
 import { client } from "../lib/client";
 import { resolvedFaqEntries } from "../lib/client/faqPresets.ts";
 
@@ -16,7 +17,12 @@ const items = resolvedFaqEntries(client.profession);
     {
       items.map((item) => (
         <details data-component="faq.item">
-          <summary>{item.question}</summary>
+          <summary>
+            <>
+              <span>{item.question}</span>
+              <ChevronDown size={20} aria-hidden="true" />
+            </>
+          </summary>
           <p>{item.answer}</p>
         </details>
       ))

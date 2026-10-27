@@ -11,4 +11,15 @@ export function bookingPrimaryIsExternal(href: string): boolean {
   return href.startsWith("http://") || href.startsWith("https://");
 }
 
+/**
+ * Attributs Umami d'un bouton « Prendre rendez-vous » : un seul événement `prise-rdv`,
+ * distingué par `emplacement` (header, hero, footer…) dans le tableau de bord.
+ */
+export function bookingTrackingAttrs(emplacement: string): Record<string, string> {
+  return {
+    "data-umami-event": "prise-rdv",
+    "data-umami-event-emplacement": emplacement,
+  };
+}
+
 export { SITE_BOOKING_PRIMARY_LABEL };

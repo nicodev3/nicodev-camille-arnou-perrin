@@ -3,6 +3,7 @@ import { MessageCircle, CalendarDays, MapPin, Phone, Mail, Globe } from "@lucide
 import { client } from "../lib/client";
 import {
   bookingPrimaryIsExternal,
+  bookingTrackingAttrs,
   resolvedBookingPrimaryHref,
   SITE_BOOKING_PRIMARY_LABEL,
 } from "../lib/client/siteBooking";
@@ -119,6 +120,7 @@ function otherChannelHref(value: string): string | undefined {
               <a
                 href={bookingHref}
                 class="cta-primary"
+                {...bookingTrackingAttrs("carte-contact")}
                 {...bookingExternal ? { target: "_blank", rel: "noopener noreferrer" } : {}}
               >
                 <CalendarDays class="size-4 shrink-0" size={16} aria-hidden="true" />

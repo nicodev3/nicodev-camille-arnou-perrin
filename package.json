@@ -3,7 +3,7 @@
   "type": "module",
   "version": "0.0.1",
   "engines": {
-    "node": ">=22.12"
+    "node": ">=24.22"
   },
   "scripts": {
     "dev": "astro dev",
@@ -30,7 +30,7 @@
     "@astrojs/sitemap": "^3.7.4",
     "@lucide/astro": "^1.47.0",
     "@tailwindcss/vite": "^4.3.3",
-    "astro": "^7.3.8",
+    "astro": "^7.4.2",
     "astro-llms-md": "^3.0.2",
     "tailwindcss": "^4.3.3",
     "zod": "^4.6.5"
@@ -41,8 +41,8 @@
     }
   },
   "devDependencies": {
-    "@astrojs/check": "^0.9.10",
-    "@types/node": "^22.20.1",
+    "@astrojs/check": "^0.9.12",
+    "@types/node": "^24.19.2",
     "concurrently": "^10.0.5",
     "decap-server": "^3.11.3",
     "prettier": "^3.9.9",

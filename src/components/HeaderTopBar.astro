@@ -4,6 +4,7 @@ import { client } from "../lib/client";
 import { businessStreetLines } from "../lib/client/businessAddress";
 import {
   bookingPrimaryIsExternal,
+  bookingTrackingAttrs,
   resolvedBookingPrimaryHref,
   SITE_BOOKING_PRIMARY_LABEL,
 } from "../lib/client/siteBooking";
@@ -35,6 +36,7 @@ const postalCity = `${b.postalCode} ${b.city}`;
       class="cta-primary cta-primary--sm ml-auto h-11 shrink-0 whitespace-nowrap px-3 sm:ml-0 sm:h-auto sm:whitespace-normal sm:px-5"
       href={bookingHref}
       aria-label={SITE_BOOKING_PRIMARY_LABEL}
+      {...bookingTrackingAttrs("header")}
       {...(bookingIsExternal ? { target: "_blank", rel: "noopener noreferrer" } : {})}
     >
       <CalendarDays class="size-4 shrink-0" size={16} aria-hidden="true" />

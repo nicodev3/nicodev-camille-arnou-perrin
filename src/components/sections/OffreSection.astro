@@ -5,6 +5,7 @@ import { heroConsultationTaglineAfterPour } from "../../lib/client/heroConsultat
 import { professionHeroConsultationPrefix } from "../../lib/client/professionCopy.ts";
 import {
   bookingPrimaryIsExternal,
+  bookingTrackingAttrs,
   resolvedBookingPrimaryHref,
   SITE_BOOKING_PRIMARY_LABEL,
 } from "../../lib/client/siteBooking";
@@ -48,6 +49,7 @@ const projectSummary = project.summary?.trim() || project.description?.trim() ||
         <a
           href={bookingHref}
           class="cta-secondary cta-secondary--sm"
+          {...bookingTrackingAttrs("accueil-offre")}
           {...bookingExternal ? { target: "_blank", rel: "noopener noreferrer" } : {}}
         >
           {SITE_BOOKING_PRIMARY_LABEL}

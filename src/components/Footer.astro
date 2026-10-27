@@ -8,6 +8,7 @@ import { professionDeontologieFooterLink } from "../lib/client/professionCopy.ts
 import { businessAreaLabel, businessStreetLines } from "../lib/client/businessAddress";
 import {
   bookingPrimaryIsExternal,
+  bookingTrackingAttrs,
   resolvedBookingPrimaryHref,
   SITE_BOOKING_PRIMARY_LABEL,
 } from "../lib/client/siteBooking";
@@ -94,6 +95,7 @@ const deontologie = professionDeontologieFooterLink(client.profession);
         <a
           class="cta-primary cta-primary--footer"
           href={bookingHref}
+          {...bookingTrackingAttrs("footer")}
           {...bookingExternal ? { target: "_blank", rel: "noopener noreferrer" } : {}}
         >
           <CalendarDays class="size-4 shrink-0" size={16} aria-hidden="true" />

@@ -81,7 +81,7 @@ Le site est statique (Astro SSG) : la sortie de production est le dossier **`dis
 1. Dans le [dashboard Cloudflare](https://dash.cloudflare.com/) : **Workers & Pages** → **Create** → **Pages** → connecter le dépôt Git.
 2. **Build command** : `npm run build`
 3. **Build output directory** : `dist`
-4. Si le build échoue à cause de Node, définir une variable d’environnement du projet (ex. `NODE_VERSION=22`) ou un fichier `.node-version` à la racine.
+4. Si le build échoue à cause de Node, définir une variable d’environnement du projet (ex. `NODE_VERSION=24`) ou un fichier `.node-version` / `.nvmrc` à la racine (voir `engines` dans `package.json`).
 
 Domaine personnalisé : **Custom domains** sur le projet Pages, puis DNS selon l’assistant Cloudflare.
 

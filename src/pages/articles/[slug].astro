@@ -3,6 +3,7 @@ import { getCollection, render } from "astro:content";
 import StandardPageLayout from "../../layouts/StandardPageLayout.astro";
 import { getPageSlug } from "../../lib/pageRoutes";
 import { isPublishedEntry } from "../../lib/contentNavigation";
+import { client } from "../../lib/client";
 
 export async function getStaticPaths() {
   const entries = await getCollection("pages", isPublishedEntry);
@@ -14,10 +15,67 @@ export async function getStaticPaths() {
 
 const { entry } = Astro.props;
 const { Content } = await render(entry);
+const articleJsonLd = JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "Article",
+  headline: entry.data.title,
+  description: entry.data.description,
+  mainEntityOfPage: new URL(Astro.url.pathname, Astro.site).href,
+  ...(entry.data.author
+    ? {
+        author: {
+          "@type": "Person",
+          name: entry.data.author,
+          ...(entry.data.author === client.business.fullName
+            ? {
+                "@id": new URL("#practitioner", Astro.site).href,
+                url: new URL("a-propos/", Astro.site).href,
+              }
+            : {}),
+        },
+      }
+    : {}),
+  ...(entry.data.publishedAt ? { datePublished: entry.data.publishedAt } : {}),
+  ...(entry.data.updatedAt ? { dateModified: entry.data.updatedAt } : {}),
+}).replace(/</g, "\\u003c");
+const formatDate = (value: string) =>
+  new Intl.DateTimeFormat("fr-FR", {
+    day: "numeric",
+    month: "long",
+    year: "numeric",
+    timeZone: "UTC",
+  }).format(new Date(value));
 ---
 
-<StandardPageLayout title={entry.data.title} description={entry.data.description ?? ""}>
+<StandardPageLayout
+  title={entry.data.title}
+  seoTitle={entry.data.seoTitle}
+  description={entry.data.description ?? ""}
+>
   <article class="content-rich" data-component="content.article">
+    {entry.data.author && (
+      <p>
+        Par{" "}
+        {entry.data.author === client.business.fullName ? (
+          <a href="/a-propos/">{entry.data.author}</a>
+        ) : (
+          entry.data.author
+        )}
+      </p>
+    )}
+    {entry.data.publishedAt && (
+      <p>
+        Publié le{" "}
+        <time datetime={entry.data.publishedAt}>{formatDate(entry.data.publishedAt)}</time>
+      </p>
+    )}
+    {entry.data.updatedAt && (
+      <p>
+        Mis à jour le{" "}
+        <time datetime={entry.data.updatedAt}>{formatDate(entry.data.updatedAt)}</time>
+      </p>
+    )}
     <Content />
   </article>
+  <script is:inline type="application/ld+json" set:html={articleJsonLd} />
 </StandardPageLayout>

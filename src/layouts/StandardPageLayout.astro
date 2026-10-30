@@ -6,6 +6,7 @@ import { client } from "../lib/client";
 
 interface Props {
   title: string;
+  seoTitle?: string;
   description?: string;
   /** Chapô sous le titre ; par défaut la description SEO. */
   intro?: string;
@@ -13,27 +14,30 @@ interface Props {
   hidePageHeader?: boolean;
 }
 
-const { title, description = "", intro = description, hidePageHeader = false } = Astro.props;
+const {
+  title,
+  seoTitle = title,
+  description = "",
+  intro = description,
+  hidePageHeader = false,
+} = Astro.props;
 
 /** Nom court pour le <title> (évite de dépasser ~60 caractères en SERP). */
-const titleBrand =
-  client.seo.siteName.split(/\s*[—–]\s*/)[0]?.trim() || client.business.fullName;
+const titleBrand = client.seo.siteName.split(/\s*[—–]\s*/)[0]?.trim() || client.business.fullName;
 ---
 
-<BaseLayout title={`${title} | ${titleBrand}`} description={description}>
+<BaseLayout title={`${seoTitle} | ${titleBrand}`} description={description}>
   <Header />
   <Breadcrumb currentLabel={title} />
 
   <main id="contenu" tabindex="-1" class="site-container page" data-component="page">
-    {
-      !hidePageHeader && (
-        <header class:list={["page-header", Astro.slots.has("actions") && "page-header--actions"]}>
-          <h1>{title}</h1>
-          {intro && <p class="lead">{intro}</p>}
-          <slot name="actions" />
-        </header>
-      )
-    }
+    {!hidePageHeader && (
+      <header class:list={["page-header", Astro.slots.has("actions") && "page-header--actions"]}>
+        <h1>{title}</h1>
+        {intro && <p class="lead">{intro}</p>}
+        <slot name="actions" />
+      </header>
+    )}
 
     <div class="page-content">
       <slot />

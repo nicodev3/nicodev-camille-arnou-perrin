@@ -30,10 +30,8 @@ export function professionConditionsConfidentialitySummary(profession: ClientPro
 }
 
 /** Schéma.org : type principal pour le script JSON-LD du layout. */
-export function professionMainEntityJsonLdType(
-  profession: ClientProfession,
-): "Psychologist" | "Person" {
-  return profession === "psychomotricien" ? "Person" : "Psychologist";
+export function professionMainEntityJsonLdType(_profession: ClientProfession): "Person" {
+  return "Person";
 }
 
 export function professionSupportsMonSoutienPsy(profession: ClientProfession): boolean {

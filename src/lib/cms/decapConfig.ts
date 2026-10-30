@@ -6,6 +6,17 @@ type DecapField = Record<string, unknown>;
 
 const articleFields: DecapField[] = [
   { label: "Titre", name: "title", widget: "string" },
+  { label: "Titre SEO (facultatif)", name: "seoTitle", widget: "string", required: false },
+  { label: "Auteur", name: "author", widget: "string", required: false },
+  {
+    label: "Date de publication",
+    name: "publishedAt",
+    widget: "datetime",
+    date_format: "YYYY-MM-DD",
+    time_format: false,
+    format: "YYYY-MM-DD",
+    required: false,
+  },
   { label: "Description", name: "description", widget: "text", required: false },
   { label: "Brouillon", name: "draft", widget: "boolean", default: true },
   {

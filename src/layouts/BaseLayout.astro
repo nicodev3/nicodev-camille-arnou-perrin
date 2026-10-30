@@ -5,9 +5,9 @@ import { Font } from "astro:assets";
 import { PUBLIC_NOINDEX } from "astro:env/client";
 import { siteFontCssVariables } from "../design/font-css-variables.mjs";
 import { client } from "../lib/client";
-import { resolvedFaqEntries } from "../lib/client/faqPresets.ts";
+import { NON_INDEXABLE_PATHS } from "../lib/non-indexable-paths.mjs";
 import { professionMainEntityJsonLdType } from "../lib/client/professionCopy.ts";
-import { businessAreaLocalities, businessStreetLines } from "../lib/client/businessAddress";
+import { businessStreetLines } from "../lib/client/businessAddress";
 import Footer from "../components/Footer.astro";
 
 interface Props {
@@ -18,18 +18,41 @@ interface Props {
 const { title = client.seo.siteName, description = client.seo.description } = Astro.props;
 
 const pageUrl = new URL(Astro.url.pathname, Astro.site);
+const noindex =
+  PUBLIC_NOINDEX ||
+  NON_INDEXABLE_PATHS.some(
+    (path) => Astro.url.pathname === path.slice(0, -1) || Astro.url.pathname.startsWith(path),
+  );
 const mainEntityLdType = professionMainEntityJsonLdType(client.profession);
 const fontVariables = Object.values(siteFontCssVariables);
 
 const mainEntityJsonLd = JSON.stringify({
   "@context": "https://schema.org",
   "@type": mainEntityLdType,
+  "@id": new URL("#practitioner", Astro.site).href,
   name: client.business.fullName,
+  sameAs: client.social.links
+    .filter((link) => link.label === "LinkedIn perso")
+    .map((link) => link.href),
   ...(mainEntityLdType === "Person" ? { jobTitle: client.business.title } : {}),
   description: client.seo.description,
   url: Astro.site,
   telephone: client.business.phone,
   email: client.business.email,
+  workLocation: {
+    "@type": "Place",
+    "@id": new URL("#cabinet", Astro.site).href,
+    name: "Cabinet de Camille Perrin — Centre Via Sana Rive Droite",
+    hasMap: "https://www.google.com/maps?cid=946393530713656690",
+    geo: { "@type": "GeoCoordinates", latitude: 48.814545, longitude: 2.135884 },
+    address: {
+      "@type": "PostalAddress",
+      streetAddress: businessStreetLines(client.business).join(", "),
+      postalCode: client.business.postalCode,
+      addressLocality: client.business.city,
+      addressCountry: "FR",
+    },
+  },
   address: {
     "@type": "PostalAddress",
     streetAddress: businessStreetLines(client.business).join(", "),
@@ -37,21 +60,6 @@ const mainEntityJsonLd = JSON.stringify({
     addressLocality: client.business.city,
     addressCountry: "FR",
   },
-  /** Communes desservies (référencement local) : « Versailles, Le Chesnay » → deux entrées. */
-  areaServed: businessAreaLocalities(client.business).map((locality) => ({
-    "@type": "City",
-    name: locality,
-  })),
-});
-
-const faqPageJsonLd = JSON.stringify({
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  mainEntity: resolvedFaqEntries(client.profession).map((item) => ({
-    "@type": "Question",
-    name: item.question,
-    acceptedAnswer: { "@type": "Answer", text: item.answer },
-  })),
 });
 ---
 
@@ -61,7 +69,7 @@ const faqPageJsonLd = JSON.stringify({
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>{title}</title>
     <meta name="description" content={description} />
-    {PUBLIC_NOINDEX && <meta name="robots" content="noindex, nofollow" />}
+    {noindex && <meta name="robots" content="noindex, nofollow" />}
     <link rel="canonical" href={pageUrl} />
     <link rel="icon" href="/favicon.ico" sizes="32x32" />
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
@@ -73,18 +81,26 @@ const faqPageJsonLd = JSON.stringify({
     <meta property="og:url" content={pageUrl} />
     <meta property="og:site_name" content={client.seo.siteName} />
     <meta property="og:image" content={client.seo.ogImage} />
-    {fontVariables.map((cssVariable) => <Font cssVariable={cssVariable as never} preload />)}
-    <script is:inline type="application/ld+json" set:html={mainEntityJsonLd} />
-    <script is:inline type="application/ld+json" set:html={faqPageJsonLd} />
+    {fontVariables.map((cssVariable) => (
+      <Font cssVariable={cssVariable as never} preload />
+    ))}
+    <script
+      is:inline
+      type="application/ld+json"
+      set:html={mainEntityJsonLd.replace(/</g, "\\u003c")}
+    />
     <script
       is:inline
       defer
       src="https://analytics.nicodev.fr/script.js"
-      data-website-id="20dcd773-f6b9-4180-872e-abcf9f1617f6"></script>
+      data-website-id="20dcd773-f6b9-4180-872e-abcf9f1617f6"
+    ></script>
   </head>
 
   <body class="min-h-screen">
-    <a class="skip-link" href="#contenu">Aller au contenu</a>
+    <a class="skip-link" href="#contenu">
+      Aller au contenu
+    </a>
     <slot />
     <Footer />
   </body>

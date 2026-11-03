@@ -13,12 +13,18 @@ import Footer from "../components/Footer.astro";
 interface Props {
   title?: string;
   description?: string;
+  isNotFound?: boolean;
 }
 
-const { title = client.seo.siteName, description = client.seo.description } = Astro.props;
+const {
+  title = client.seo.siteName,
+  description = client.seo.description,
+  isNotFound = false,
+} = Astro.props;
 
 const pageUrl = new URL(Astro.url.pathname, Astro.site);
 const noindex =
+  isNotFound ||
   PUBLIC_NOINDEX ||
   NON_INDEXABLE_PATHS.some(
     (path) => Astro.url.pathname === path.slice(0, -1) || Astro.url.pathname.startsWith(path),
@@ -70,7 +76,7 @@ const mainEntityJsonLd = JSON.stringify({
     <title>{title}</title>
     <meta name="description" content={description} />
     {noindex && <meta name="robots" content="noindex, nofollow" />}
-    <link rel="canonical" href={pageUrl} />
+    {!isNotFound && <link rel="canonical" href={pageUrl} />}
     <link rel="icon" href="/favicon.ico" sizes="32x32" />
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
@@ -89,12 +95,14 @@ const mainEntityJsonLd = JSON.stringify({
       type="application/ld+json"
       set:html={mainEntityJsonLd.replace(/</g, "\\u003c")}
     />
-    <script
-      is:inline
-      defer
-      src="https://analytics.nicodev.fr/script.js"
-      data-website-id="20dcd773-f6b9-4180-872e-abcf9f1617f6"
-    ></script>
+    {!isNotFound && (
+      <script
+        is:inline
+        defer
+        src="https://analytics.nicodev.fr/script.js"
+        data-website-id="20dcd773-f6b9-4180-872e-abcf9f1617f6"
+      ></script>
+    )}
   </head>
 
   <body class="min-h-screen">

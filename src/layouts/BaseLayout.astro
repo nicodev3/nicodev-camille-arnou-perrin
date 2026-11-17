@@ -7,7 +7,8 @@ import { siteFontCssVariables } from "../design/font-css-variables.mjs";
 import { client } from "../lib/client";
 import { NON_INDEXABLE_PATHS } from "../lib/non-indexable-paths.mjs";
 import { professionMainEntityJsonLdType } from "../lib/client/professionCopy.ts";
-import { businessStreetLines } from "../lib/client/businessAddress";
+import { businessAreaLocalities, businessStreetLines } from "../lib/client/businessAddress";
+import { enabledContactHoursRows } from "../lib/client/contactHours";
 import Footer from "../components/Footer.astro";
 
 interface Props {
@@ -32,40 +33,82 @@ const noindex =
 const mainEntityLdType = professionMainEntityJsonLdType(client.profession);
 const fontVariables = Object.values(siteFontCssVariables);
 
+const practitionerId = new URL("#practitioner", Astro.site).href;
+const cabinetId = new URL("#cabinet", Astro.site).href;
+const postalAddressJsonLd = {
+  "@type": "PostalAddress",
+  streetAddress: businessStreetLines(client.business).join(", "),
+  postalCode: client.business.postalCode,
+  addressLocality: client.business.city,
+  addressCountry: "FR",
+};
+
+const SCHEMA_ORG_WEEKDAY = {
+  monday: "Monday",
+  tuesday: "Tuesday",
+  wednesday: "Wednesday",
+  thursday: "Thursday",
+  friday: "Friday",
+  saturday: "Saturday",
+  sunday: "Sunday",
+} as const;
+
+/** « 10h00 - 20h00 » → { opens: "10:00", closes: "20:00" } ; null si le format est inattendu. */
+function parseHoursRange(value: string): { opens: string; closes: string } | null {
+  const match = value.match(/(\d{1,2})\s*h\s*(\d{2})?\s*[-–à]+\s*(\d{1,2})\s*h\s*(\d{2})?/i);
+  if (!match) return null;
+  const hhmm = (h: string, m?: string) => `${h.padStart(2, "0")}:${m ?? "00"}`;
+  return { opens: hhmm(match[1]!, match[2]), closes: hhmm(match[3]!, match[4]) };
+}
+
+const openingHoursSpecification = enabledContactHoursRows(client.contact.hours).flatMap(
+  (row) => {
+    const range = parseHoursRange(row.value);
+    return range
+      ? [{ "@type": "OpeningHoursSpecification", dayOfWeek: SCHEMA_ORG_WEEKDAY[row.day], ...range }]
+      : [];
+  },
+);
+
 const mainEntityJsonLd = JSON.stringify({
   "@context": "https://schema.org",
-  "@type": mainEntityLdType,
-  "@id": new URL("#practitioner", Astro.site).href,
-  name: client.business.fullName,
-  sameAs: client.social.links
-    .filter((link) => link.label === "LinkedIn perso")
-    .map((link) => link.href),
-  ...(mainEntityLdType === "Person" ? { jobTitle: client.business.title } : {}),
-  description: client.seo.description,
-  url: Astro.site,
-  telephone: client.business.phone,
-  email: client.business.email,
-  workLocation: {
-    "@type": "Place",
-    "@id": new URL("#cabinet", Astro.site).href,
-    name: "Cabinet de Camille Perrin — Centre Via Sana Rive Droite",
-    hasMap: "https://www.google.com/maps?cid=946393530713656690",
-    geo: { "@type": "GeoCoordinates", latitude: 48.814545, longitude: 2.135884 },
-    address: {
-      "@type": "PostalAddress",
-      streetAddress: businessStreetLines(client.business).join(", "),
-      postalCode: client.business.postalCode,
-      addressLocality: client.business.city,
-      addressCountry: "FR",
+  "@graph": [
+    {
+      "@type": mainEntityLdType,
+      "@id": practitionerId,
+      name: client.business.fullName,
+      sameAs: client.social.links
+        .filter((link) => link.label === "LinkedIn perso")
+        .map((link) => link.href),
+      ...(mainEntityLdType === "Person" ? { jobTitle: client.business.title } : {}),
+      description: client.seo.description,
+      url: Astro.site,
+      telephone: client.business.phone,
+      email: client.business.email,
+      workLocation: { "@id": cabinetId },
+      address: postalAddressJsonLd,
     },
-  },
-  address: {
-    "@type": "PostalAddress",
-    streetAddress: businessStreetLines(client.business).join(", "),
-    postalCode: client.business.postalCode,
-    addressLocality: client.business.city,
-    addressCountry: "FR",
-  },
+    {
+      // MedicalBusiness est un sous-type de LocalBusiness : le cabinet devient une entité locale.
+      "@type": "MedicalBusiness",
+      "@id": cabinetId,
+      name: "Cabinet de Camille Perrin — Centre Via Sana Rive Droite",
+      url: Astro.site,
+      description: client.seo.description,
+      image: client.seo.ogImage,
+      telephone: client.business.phone,
+      email: client.business.email,
+      hasMap: "https://www.google.com/maps?cid=946393530713656690",
+      geo: { "@type": "GeoCoordinates", latitude: 48.814545, longitude: 2.135884 },
+      address: postalAddressJsonLd,
+      areaServed: businessAreaLocalities(client.business).map((name) => ({
+        "@type": "City",
+        name,
+      })),
+      ...(openingHoursSpecification.length > 0 ? { openingHoursSpecification } : {}),
+      employee: { "@id": practitionerId },
+    },
+  ],
 });
 ---
 

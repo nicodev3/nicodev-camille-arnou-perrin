@@ -1,0 +1,94 @@
+---
+/**
+ * Bloc « informations pratiques » partagé par les pages locales (Le Chesnay, Versailles) :
+ * adresse, accès, horaires et prise de rendez-vous, tout est lu dans client.json.
+ */
+import { client } from "../../lib/client";
+import { businessStreetLines } from "../../lib/client/businessAddress";
+import { enabledContactHoursRows } from "../../lib/client/contactHours";
+import {
+  bookingPrimaryIsExternal,
+  bookingTrackingAttrs,
+  resolvedBookingPrimaryHref,
+  SITE_BOOKING_PRIMARY_LABEL,
+} from "../../lib/client/siteBooking";
+
+interface Props {
+  /** Emplacement Umami du bouton de rendez-vous (ex. « page-locale-chesnay »). */
+  trackingPlace: string;
+  headingLevel?: 2 | 3;
+}
+
+const { trackingPlace, headingLevel = 2 } = Astro.props;
+const Heading = `h${headingLevel}` as "h2" | "h3";
+
+const b = client.business;
+const bookingHref = resolvedBookingPrimaryHref(client);
+const bookingExternal = bookingPrimaryIsExternal(bookingHref);
+const hoursRows = enabledContactHoursRows(client.contact.hours);
+const hoursNote = (client.contact.hoursNote ?? "")
+  .split(/\n+/)
+  .map((line) => line.trim())
+  // La ligne du groupe de supervision n'a rien à faire sur une page locale.
+  .filter((line) => line.length > 0 && !/supervision|^Le Cercle/i.test(line));
+
+const accessLines = (client.contact.accessNote ?? "")
+  .split(/\n+/)
+  .map((line) => line.trim())
+  .filter(Boolean);
+const busLines = accessLines.filter((line) => /^bus\b/i.test(line));
+const floorLine = accessLines.find((line) => /étage|ascenseur/i.test(line));
+
+const digits = b.phone.replace(/\D/g, "");
+const phoneDisplay =
+  digits.length === 10 ? digits.replace(/(\d{2})(?=\d)/g, "$1 ").trim() : b.phone;
+---
+
+<section class="page-block" data-component="local.practical">
+  <Heading>Adresse, accès et rendez-vous</Heading>
+
+  <address class="not-italic">
+    <p>
+      <strong>{b.fullName}</strong>, {b.title.toLowerCase()}<br />
+      {businessStreetLines(b).map((line) => (<Fragment>{line}<br /></Fragment>))}
+      {b.postalCode} {b.city}
+    </p>
+  </address>
+
+  {
+    (busLines.length > 0 || floorLine) && (
+      <ul>
+        {busLines.map((line) => <li>{line}</li>)}
+        {floorLine && <li>{floorLine}</li>}
+      </ul>
+    )
+  }
+
+  {
+    hoursRows.length > 0 && (
+      <p>
+        <strong>Horaires au cabinet :</strong>{" "}
+        {hoursRows.map((row, i) => (
+          <Fragment>{i > 0 ? " · " : ""}{row.label} {row.value}</Fragment>
+        ))}
+      </p>
+    )
+  }
+  {hoursNote.map((line) => <p>{line}</p>)}
+
+  <p>
+    <a
+      href={bookingHref}
+      class="cta-primary"
+      {...(bookingExternal ? { target: "_blank", rel: "noopener noreferrer" } : {})}
+      {...bookingTrackingAttrs(trackingPlace)}
+    >
+      {SITE_BOOKING_PRIMARY_LABEL}
+    </a>
+  </p>
+  <p>
+    Vous pouvez aussi m'appeler au <a href={`tel:${digits}`}>{phoneDisplay}</a> ou passer par la <a
+      href="/contact/">page contact</a
+    >.
+  </p>
+</section>

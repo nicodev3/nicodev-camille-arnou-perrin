@@ -1,0 +1,72 @@
+---
+import StandardPageLayout from "../layouts/StandardPageLayout.astro";
+import LocalCabinetPractical from "../components/pages/LocalCabinetPractical.astro";
+import { client } from "../lib/client";
+
+const specialties = client.practice.specialties;
+const first = client.pricing.items.find((item) => /première/i.test(item.name));
+const followUp = client.pricing.items.find((item) => /suivi/i.test(item.name));
+---
+
+<StandardPageLayout
+  title="Psychologue au Chesnay-Rocquencourt"
+  seoTitle="Psychologue au Chesnay (78)"
+  description="Camille Perrin, psychologue clinicienne au Chesnay-Rocquencourt (78150), Centre Via Sana Rive Droite. Adultes et ados dès 16 ans, cabinet ou visio."
+>
+  <article class="content-rich" data-component="content.local-page-chesnay">
+    <h2>Un cabinet au Chesnay-Rocquencourt</h2>
+    <p>
+      Je reçois au Centre Via Sana Rive Droite, un cabinet pluridisciplinaire situé au
+      Chesnay-Rocquencourt (78150), commune voisine de Versailles. J'y accompagne des adultes
+      et des adolescents à partir de 16 ans, dans un cadre confidentiel et sans jugement.
+    </p>
+    <p>
+      Le premier rendez-vous a lieu au cabinet. Ensuite, nous pouvons poursuivre le suivi sur
+      place ou en visio, selon ce qui vous convient le mieux.
+    </p>
+
+    <h2>Pour quelles raisons consulter</h2>
+    <p>Je vous accompagne notamment pour :</p>
+    <ul>
+      {specialties.map((specialty) => <li>{specialty}</li>)}
+    </ul>
+    <p>
+      Vous ne trouvez pas exactement votre situation dans cette liste ? Écrivez-moi : nous
+      verrons ensemble si mon accompagnement peut vous aider. Le détail est sur la page <a
+        href="/pourquoi-consulter/">Pourquoi consulter</a
+      >.
+    </p>
+
+    <h2>Comment je travaille</h2>
+    <p>
+      Mon approche s'appuie sur la <a href="/psychotherapie-psychodynamique/"
+        >psychothérapie psychodynamique</a
+      > et sur une <a href="/approche-integrative/">approche intégrative</a>, adaptée à votre
+      histoire et à votre demande. Pour en savoir plus sur mon parcours, rendez-vous sur la
+      page <a href="/a-propos/">À propos</a>.
+    </p>
+
+    {
+      first && followUp && (
+        <Fragment>
+          <h2>Durée et tarifs</h2>
+          <p>
+            La première consultation dure {first.durationMinutes} minutes ({first.price} €). Les
+            séances de suivi durent {followUp.durationMinutes} minutes ({followUp.price} €).
+            Retrouvez tous les détails, ainsi que les moyens de paiement, sur la page <a
+              href="/tarifs/">Tarifs</a
+            >.
+          </p>
+        </Fragment>
+      )
+    }
+
+    <LocalCabinetPractical trackingPlace="page-locale-chesnay" />
+
+    <p>
+      Vous habitez à Versailles ou à Viroflay ? Consultez la page <a
+        href="/psychologue-versailles/">psychologue pour Versailles</a
+      >.
+    </p>
+  </article>
+</StandardPageLayout>

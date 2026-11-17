@@ -14,6 +14,8 @@ export function buildFooterSiteMapItems(params: {
   mainNavItems: SiteNavLink[];
   practiceNavItems: SiteNavLink[];
   publishedArticles: FooterSiteMapItem[];
+  /** Pages publiques hors menu (ex. pages locales), ajoutées après les pages du menu. */
+  extraItems?: FooterSiteMapItem[];
 }): FooterSiteMapItem[] {
   const seen = new Set<string>();
   const out: FooterSiteMapItem[] = [];
@@ -41,6 +43,7 @@ export function buildFooterSiteMapItems(params: {
     }
     push({ href: item.href, label: item.label });
   }
+  for (const item of params.extraItems ?? []) push(item);
   pushArticlesSection();
 
   return out;

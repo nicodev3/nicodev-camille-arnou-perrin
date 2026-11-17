@@ -27,6 +27,10 @@ const siteMapItems = buildFooterSiteMapItems({
   mainNavItems: main,
   practiceNavItems: practices,
   publishedArticles: publishedArticles.map((a) => ({ label: a.title, href: a.href })),
+  extraItems: [
+    { label: "Psychologue au Chesnay", href: "/psychologue-le-chesnay/" },
+    { label: "Psychologue à Versailles", href: "/psychologue-versailles/" },
+  ],
 });
 
 const deontologie = professionDeontologieFooterLink(client.profession);

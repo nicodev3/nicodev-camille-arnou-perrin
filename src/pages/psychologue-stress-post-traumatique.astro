@@ -1,0 +1,67 @@
+---
+import StandardPageLayout from "../layouts/StandardPageLayout.astro";
+import LocalCabinetPractical from "../components/pages/LocalCabinetPractical.astro";
+import { client } from "../lib/client";
+
+const traumaTrainings = client.credentials.trainings.filter((t) =>
+  /psychotrauma|urgence|lifespan|cycle de la vie/i.test(t.label),
+);
+---
+
+<StandardPageLayout
+  title="Psychologue pour le stress post-traumatique"
+  seoTitle="Psychologue stress post-traumatique (78)"
+  description="Psychologue au Chesnay-Rocquencourt pour le stress post-traumatique et les suites d'un événement traumatique. Adultes et ados dès 16 ans, cabinet ou visio."
+>
+  <article class="content-rich" data-component="content.ptsd-page">
+    <h2>Quand consulter après un événement traumatique</h2>
+    <p>
+      Un accident, une agression, une violence, un deuil brutal ou toute situation vécue comme
+      menaçante peut laisser des traces durables. Certaines personnes les reconnaissent
+      facilement ; d'autres les remarquent plus tard, à travers des signes qui reviennent :
+    </p>
+    <ul>
+      <li>des images, des souvenirs ou des cauchemars qui s'imposent,</li>
+      <li>l'évitement de lieux, de personnes ou de sujets qui rappellent l'événement,</li>
+      <li>un état d'alerte permanent, des sursauts, des difficultés de sommeil ou de concentration,</li>
+      <li>une impression d'être coupé de soi ou des autres.</li>
+    </ul>
+    <p>
+      Ces réactions sont fréquentes après un traumatisme. Lorsqu'elles durent ou envahissent le
+      quotidien, un accompagnement psychologique peut aider.
+    </p>
+
+    <h2>Comment je vous accompagne</h2>
+    <p>
+      Nous avançons à votre rythme, sans vous demander de tout raconter d'emblée. Le premier
+      temps consiste à poser un cadre sécurisant, à comprendre ce que vous traversez et à
+      repérer ce qui vous aide à tenir. Je reçois des adultes et des adolescents à partir de
+      16 ans, au cabinet ou en visio.
+    </p>
+
+    <h2>Ma formation</h2>
+    <ul>
+      {
+        traumaTrainings.map((training) => (
+          <li>
+            {training.label} ({training.provider}, {training.year})
+          </li>
+        ))
+      }
+    </ul>
+    <p>
+      Mon parcours complet est détaillé sur la page <a href="/a-propos/">À propos</a>, et ma
+      façon de travailler sur la page <a href="/psychotherapie-psychodynamique/"
+        >psychothérapie psychodynamique</a
+      >.
+    </p>
+
+    <LocalCabinetPractical trackingPlace="page-stress-post-traumatique" />
+
+    <p>
+      À lire aussi : <a href="/psychologue-addiction/">psychologue pour les addictions</a>, <a
+        href="/psychologue-le-chesnay/">psychologue au Chesnay-Rocquencourt</a
+      >.
+    </p>
+  </article>
+</StandardPageLayout>

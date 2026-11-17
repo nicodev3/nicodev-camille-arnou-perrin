@@ -1,0 +1,74 @@
+---
+import StandardPageLayout from "../layouts/StandardPageLayout.astro";
+import LocalCabinetPractical from "../components/pages/LocalCabinetPractical.astro";
+import { client } from "../lib/client";
+
+const addictionTrainings = client.credentials.trainings.filter((t) =>
+  /addiction|psychotrauma/i.test(t.label),
+);
+const addictionDegree = client.credentials.degrees.find((d) => /addiction/i.test(d.institution));
+---
+
+<StandardPageLayout
+  title="Psychologue pour les addictions"
+  seoTitle="Psychologue addictions au Chesnay (78)"
+  description="Psychologue formée aux addictions au Chesnay-Rocquencourt (78) : substances, jeux, écrans, pornographie. Adultes et ados dès 16 ans, cabinet ou visio."
+>
+  <article class="content-rich" data-component="content.addiction-page">
+    <h2>Une addiction, c'est quoi ?</h2>
+    <p>
+      On parle d'addiction lorsqu'un comportement ou une consommation prend une place qui
+      échappe peu à peu à votre contrôle, malgré ses conséquences sur votre santé, vos
+      relations, votre travail ou votre humeur. Cela peut concerner des substances (alcool,
+      cannabis, tabac, médicaments…), mais aussi les jeux d'argent, les écrans, les jeux vidéo
+      ou la pornographie.
+    </p>
+    <p>
+      Demander de l'aide n'est pas un aveu d'échec. C'est souvent le moment où quelque chose
+      commence à changer.
+    </p>
+
+    <h2>Comment je vous accompagne</h2>
+    <p>
+      En consultation, nous prenons le temps de comprendre ce que cette conduite représente pour
+      vous : ce qu'elle apaise, ce qu'elle remplace, ce qui la déclenche. L'accompagnement se
+      déroule dans un cadre confidentiel et sans jugement, à votre rythme. Il peut être mené
+      seule ou en complément d'un suivi médical, par exemple avec votre médecin ou un addictologue.
+    </p>
+    <p>
+      Je reçois des adultes et des adolescents à partir de 16 ans. Les addictions s'associent
+      souvent à d'autres difficultés (anxiété, humeur, traumatisme) : nous pouvons aussi les
+      aborder dans le même suivi.
+    </p>
+
+    <h2>Ma formation sur les addictions</h2>
+    <ul>
+      {
+        addictionDegree && (
+          <li>
+            {addictionDegree.label} : {addictionDegree.institution}
+          </li>
+        )
+      }
+      {
+        addictionTrainings.map((training) => (
+          <li>
+            {training.label} ({training.provider}, {training.year})
+          </li>
+        ))
+      }
+    </ul>
+    <p>
+      Plus de détails sur mon parcours dans la page <a href="/a-propos/">À propos</a>, et sur
+      mes méthodes dans <a href="/approche-integrative/">l'approche intégrative</a>.
+    </p>
+
+    <LocalCabinetPractical trackingPlace="page-addiction" />
+
+    <p>
+      À lire aussi : <a href="/psychologue-stress-post-traumatique/"
+        >psychologue pour le stress post-traumatique</a
+      >, <a href="/psychologue-le-chesnay/">psychologue au Chesnay-Rocquencourt</a>.
+    </p>
+  </article>
+</StandardPageLayout>

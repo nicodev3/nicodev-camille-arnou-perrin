@@ -1394,18 +1394,18 @@ button.cta-primary,
   max-width: 40rem;
 }
 
-[data-component="content.article"] a,
-[data-component="content.practice-page"] a,
-.content-rich a {
+[data-component="content.article"] a:not(.cta-primary):not(.cta-secondary),
+[data-component="content.practice-page"] a:not(.cta-primary):not(.cta-secondary),
+.content-rich a:not(.cta-primary):not(.cta-secondary) {
   color: var(--color-fg);
   text-decoration: underline;
   text-underline-offset: 3px;
   text-decoration-color: var(--stitch-border);
 }
 @media (hover: hover) {
-  [data-component="content.article"] a:hover,
-  [data-component="content.practice-page"] a:hover,
-  .content-rich a:hover {
+  [data-component="content.article"] a:not(.cta-primary):not(.cta-secondary):hover,
+  [data-component="content.practice-page"] a:not(.cta-primary):not(.cta-secondary):hover,
+  .content-rich a:not(.cta-primary):not(.cta-secondary):hover {
     color: var(--color-primary);
     text-decoration-color: var(--color-primary);
   }
